@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmMainApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainApp.Designer.cs">
+      <DependentUpon>frmMainApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThongBao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmMainApp.resx">
+      <DependentUpon>frmMainApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmThongBao.resx">
       <DependentUpon>frmThongBao.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

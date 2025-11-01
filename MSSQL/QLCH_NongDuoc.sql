@@ -1,4 +1,5 @@
-﻿use QLCH_NongDuoc
+﻿use QLCH_NongDuoc  -- Library
+use QuanLiCuaHangNongDuoc -- My devices
 
 --================================Overview==================================-
 '''
