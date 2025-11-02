@@ -51,10 +51,29 @@ CREATE TABLE NhanVien (
     MaVaiTro INT NOT NULL,
     TenNhanVien NVARCHAR(100) NOT NULL,
     TrangThaiTaiKhoan NVARCHAR(50),
-    HinhAnh NVARCHAR(255),
+    HinhAnh VARBINARY(MAX),
     LamLaiToken NVARCHAR(255),
     FOREIGN KEY (MaVaiTro) REFERENCES VaiTro(MaVaiTro)
 );
+
+-- Đổi hình ảnh từ nvarchar -> varbinary
+--Implicit conversion from data type nvarchar to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+ALTER TABLE NhanVien
+ALTER COLUMN HinhAnh VARBINARY(MAX);
+
+--> xoá và làm lại
+-- 1️⃣ Tạo cột mới để lưu ảnh nhị phân
+ALTER TABLE NhanVien
+ADD HinhAnh VARBINARY(MAX);
+
+-- 2️⃣ (Tùy chọn) Nếu bạn có dữ liệu đường dẫn, có thể xử lý bằng code C# để đọc ảnh và ghi lại ở đây.
+
+-- 3️⃣ Xóa cột cũ
+ALTER TABLE NhanVien
+DROP COLUMN HinhAnh;
+
+
+
 
 -- Main App Tables
 CREATE TABLE NhaCC (
