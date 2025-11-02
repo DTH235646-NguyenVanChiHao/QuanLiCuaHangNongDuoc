@@ -16,12 +16,12 @@ namespace QuanLiCuaHang_NongDuoc
         public DBConnection() {
             //Kết nối csdl của từng thành viên
             string datasource_ChiHao = "ADMIN-PC\\SQLEXPRESS";
-            string datasource_HieuHau;
+            string datasource_HieuHau = "DESKTOP-33RD74C\\SQLEXPRESS";
             string datasource_PhuocHao;
 
             MessageBox.Show("DB Connection Initialized");
             //Khởi tạo chuỗi dùng để kết nối CSDL
-            connectionString = $"Data Source={datasource_ChiHao};Initial Catalog=TenDatabase;Integrated Security=True";
+            connectionString = $"Data Source={datasource_HieuHau};Initial Catalog=TenDatabase;Integrated Security=True";
             this.GetConnection();   
         }
 
