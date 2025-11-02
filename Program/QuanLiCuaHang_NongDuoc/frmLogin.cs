@@ -30,6 +30,15 @@ namespace QuanLiCuaHang_NongDuoc
 
         [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
 
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+
+        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
+        [System.Runtime.InteropServices.DllImport("Gidi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
 
         public frmLogin()
         {

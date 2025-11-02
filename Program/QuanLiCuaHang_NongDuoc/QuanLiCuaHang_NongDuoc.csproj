@@ -47,16 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-=======
     <Compile Include="DBConnection.cs" />
->>>>>>> 7c665922f57d78aa4c431b3f5bcc309afefef601
     <Compile Include="frmMainApp.cs">
       <SubType>Form</SubType>
     </Compile>
