@@ -33,13 +33,13 @@ namespace QuanLiCuaHang_NongDuoc
         }
 
 
-        //Lí do nên dùng using
-        //using giúp tự động giải phóng tài nguyên khi bạn dùng xong một đối tượng,
-        //                         mà không cần viết thêm code để đóng nó thủ công.
-        //============================Các hàm truy xuất dữ liệu
+            //Lí do nên dùng using
+            //using giúp tự động giải phóng tài nguyên khi bạn dùng xong một đối tượng,
+            //                         mà không cần viết thêm code để đóng nó thủ công.
+            //============================Các hàm truy xuất dữ liệu
 
 
-        // Hàm lấy hình ảnh nhân viên => hiển thị lên sau khi đăng nhập
+            // Hàm lấy hình ảnh nhân viên => hiển thị lên sau khi đăng nhập
        
     }
 }

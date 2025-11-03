@@ -8,7 +8,6 @@ namespace QuanLiCuaHang_NongDuoc
     public partial class frmMainApp : Form
     {
         private System.ComponentModel.IContainer components = null;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel panel1;
         private Panel panel2;
         private Button btnTrangChu;
@@ -31,7 +30,6 @@ namespace QuanLiCuaHang_NongDuoc
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -52,9 +50,8 @@ namespace QuanLiCuaHang_NongDuoc
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNamePage = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnlContentPages = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxUserAvatar)).BeginInit();
             this.panel2.SuspendLayout();
@@ -265,7 +262,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.panel3.Controls.Add(this.lblNamePage);
             this.panel3.Location = new System.Drawing.Point(240, 80);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(833, 51);
+            this.panel3.Size = new System.Drawing.Size(833, 63);
             this.panel3.TabIndex = 2;
             // 
             // lblTimeRendering
@@ -273,7 +270,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblTimeRendering.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTimeRendering.AutoSize = true;
             this.lblTimeRendering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeRendering.Location = new System.Drawing.Point(627, 11);
+            this.lblTimeRendering.Location = new System.Drawing.Point(642, 20);
             this.lblTimeRendering.Name = "lblTimeRendering";
             this.lblTimeRendering.Size = new System.Drawing.Size(69, 29);
             this.lblTimeRendering.TabIndex = 6;
@@ -284,7 +281,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblDateRendering.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDateRendering.AutoSize = true;
             this.lblDateRendering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateRendering.Location = new System.Drawing.Point(256, 11);
+            this.lblDateRendering.Location = new System.Drawing.Point(301, 19);
             this.lblDateRendering.Name = "lblDateRendering";
             this.lblDateRendering.Size = new System.Drawing.Size(75, 29);
             this.lblDateRendering.TabIndex = 5;
@@ -295,7 +292,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(535, 11);
+            this.label3.Location = new System.Drawing.Point(561, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 29);
             this.label3.TabIndex = 4;
@@ -306,7 +303,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(175, 11);
+            this.label2.Location = new System.Drawing.Point(220, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 29);
             this.label2.TabIndex = 3;
@@ -318,23 +315,11 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblNamePage.BackColor = System.Drawing.Color.White;
             this.lblNamePage.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNamePage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNamePage.Location = new System.Drawing.Point(3, 0);
+            this.lblNamePage.Location = new System.Drawing.Point(3, 11);
             this.lblNamePage.Name = "lblNamePage";
             this.lblNamePage.Size = new System.Drawing.Size(166, 38);
             this.lblNamePage.TabIndex = 2;
             this.lblNamePage.Text = "Name Page";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
             // pnlContentPages
             // 
@@ -342,10 +327,16 @@ namespace QuanLiCuaHang_NongDuoc
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContentPages.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlContentPages.Location = new System.Drawing.Point(240, 150);
+            this.pnlContentPages.Location = new System.Drawing.Point(240, 163);
             this.pnlContentPages.Name = "pnlContentPages";
-            this.pnlContentPages.Size = new System.Drawing.Size(833, 570);
+            this.pnlContentPages.Size = new System.Drawing.Size(833, 557);
             this.pnlContentPages.TabIndex = 3;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMainApp
             // 
@@ -379,9 +370,8 @@ namespace QuanLiCuaHang_NongDuoc
         private Label lblNamePage;
         private Label lblEmail;
         private Label lblUsername;
-        private ContextMenuStrip contextMenuStrip1;
-        private ContextMenuStrip contextMenuStrip2;
         private Panel pnlActive;
         private Panel pnlContentPages;
+        private Timer timer1;
     }
 }
