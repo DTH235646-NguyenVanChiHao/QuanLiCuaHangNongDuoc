@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,28 +14,25 @@ namespace QuanLiCuaHang_NongDuoc
 {
     public partial class frmMainApp : Form
     {
-        //Hiệu ứng khi nhân hoặc thả
-        private Color ActiveColor = Color.FromArgb(46, 51, 73);
-        private Color InactiveColor = Color.FromArgb(24, 30, 54);
+        
 
+        private DBConnection dBConnection;
 
         //Biến lưu form con hiện tại
         public frmMainApp()
         {
             InitializeComponent();
             KhoiTaoGiaoDien();
-            DBConnection dBConnection = new DBConnection();
+           this.dBConnection = new DBConnection();
         }
 
 
         
-
+       
         //Form từ giao diện 
         private void frmMainApp_Load(object sender, EventArgs e)
         {
-            
-
-
+          
         }
 
 
@@ -62,9 +61,8 @@ namespace QuanLiCuaHang_NongDuoc
 
 
             //Mặc định hiển thị trang đầu tiên
-
-            //OpenChildForm(new frmTrangChu());
-            //HideSubMenu();    
+            OpenChildForm(new frmTrangChu());
+           
 
 
             //Hiệu ứng chuyển đổi màu khi nhấn button
@@ -72,19 +70,88 @@ namespace QuanLiCuaHang_NongDuoc
             //SetButtonColors(btnTrangChu,ActiveColor);
             pnlActive.Height = btnTrangChu.Height;
             pnlActive.Top = btnTrangChu.Top;
+
+            //hiển thị đè lên các control khác nếu chúng bị chồng lấp.
             pnlActive.BringToFront();
 
         }
 
 
-        //Hàm mở các form con bên trong form chính
-        public void OpenChildForm(Form pages) {
 
+        //Hàm mở các form con bên trong form chính
+        private Form activeForm = null;
+
+        //Do form là form cha nên ta cần truyền vào form con
+        public void OpenChildForm(Form pages) {
+            if(activeForm != null)
+                activeForm.Close();
+
+            //Create a form
+            activeForm = pages; // định bị form hiện tại
+
+            //Thiet lập các thuộc tính cho form con
+            pages.TopLevel = false;
+            pages.FormBorderStyle = FormBorderStyle.None;
+            pages.Dock = DockStyle.Fill;
+
+            //Thêm form vào panel đã được định vị trí sẵn
+            this.pnlContentPages.Controls.Add(pages);
+
+            //Thay đổi tên trang hiện tại
+            this.lblNamePage.Text = pages.Text;
+
+            //Hiển thị form
+            pages.BringToFront();
+            pages.Show();
         }
 
         public void HideSubMenu() { }
 
+        //Button on navigation panel
+        private void btnTrangChu_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmTrangChu());
+        }
+
+        private void btnHoaDon_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmHoaDon());
+        }
+
+        private void btnPhieuNhap_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmPhieuNhap());
+        }
+
+        private void btnSanPham_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmSanPham());
+        }
+
+        private void btnNhaCC_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmNhaCC());
+        }
+
+        private void btnKhachHang_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmKhachHang());
+        }
+
        
+
+        //Avatar user click => Show profile + Users + password
+        private void picBoxUserAvatar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmNhanVien());
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Chua the dang xuat");
+        }
+
+
 
         //public void SetButtonColors(Button btn, ){
 

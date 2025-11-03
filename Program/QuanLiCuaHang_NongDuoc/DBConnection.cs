@@ -12,32 +12,34 @@ namespace QuanLiCuaHang_NongDuoc
     internal class DBConnection
     {
         private string connectionString;
-        private SqlConnection connection;
+       
         public DBConnection() {
             //Kết nối csdl của từng thành viên
             string datasource_ChiHao = "ADMIN-PC\\SQLEXPRESS";
             string datasource_HieuHau;
-            string datasource_PhuocHao;
+            string datasource_PhuocHao ;
 
-            MessageBox.Show("DB Connection Initialized");
+            string tenDatabase_ChiHao = "QuanLiCuaHangNongDuoc";
             //Khởi tạo chuỗi dùng để kết nối CSDL
-            connectionString = $"Data Source={datasource_ChiHao};Initial Catalog=TenDatabase;Integrated Security=True";
-            this.GetConnection();   
+            this.connectionString = $"Data Source={datasource_ChiHao};Initial Catalog={tenDatabase_ChiHao};Integrated Security=True";
+
         }
 
-        public void GetConnection()
+        public SqlConnection GetConnection()
         {
             //Kết nối với csdl và trả về một biến là gọi là cn - hay connection 
-            this.connection = new SqlConnection(connectionString);
-            this.connection.Open();
+            return new SqlConnection(this.connectionString);
+          
         }
-        
+
+
+        //Lí do nên dùng using
+        //using giúp tự động giải phóng tài nguyên khi bạn dùng xong một đối tượng,
+        //                         mà không cần viết thêm code để đóng nó thủ công.
         //============================Các hàm truy xuất dữ liệu
 
 
         // Hàm lấy hình ảnh nhân viên => hiển thị lên sau khi đăng nhập
-        public Image  getHinhAnhNhanVien(){
-        
-        }
+       
     }
 }
