@@ -14,9 +14,8 @@ namespace QuanLiCuaHang_NongDuoc
 {
     public partial class frmLogin : Form
     {
-        #region FromDesign
 
-        private bool Drag;
+          private bool Drag;
         private int MouseX;
         private int MouseY;
 
@@ -29,8 +28,9 @@ namespace QuanLiCuaHang_NongDuoc
         private const int CS_DROPSHADOW = 0x00020000;
         private const int WM_NCPAINT = 0x0085;
         private const int WM_ACTIVATEAPP = 0x001C;
+      
 
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+       
 
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
         [System.Runtime.InteropServices.DllImport("dwmapi.dll")]

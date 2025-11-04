@@ -1,6 +1,6 @@
 ﻿namespace QuanLiCuaHang_NongDuoc
 {
-    partial class frmTrangChu
+    partial class frmSanPham
     {
         /// <summary>
         /// Required designer variable.
@@ -34,22 +34,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.label1.Location = new System.Drawing.Point(375, 215);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Trang chủ";
+            this.label1.Text = "sản phẩm";
             // 
-            // frmTrangChu
+            // frmSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
-            this.Name = "frmTrangChu";
-            this.Text = "Trang chủ";
+            this.Name = "frmSanPham";
+            this.Text = "Sản Phẩm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

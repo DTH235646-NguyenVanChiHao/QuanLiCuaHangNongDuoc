@@ -8,7 +8,6 @@ namespace QuanLiCuaHang_NongDuoc
     public partial class frmMainApp : Form
     {
         private System.ComponentModel.IContainer components = null;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel panel1;
         private Panel panel2;
         private Button btnTrangChu;
@@ -17,7 +16,7 @@ namespace QuanLiCuaHang_NongDuoc
         private Button btnSanPham;
         private Button btnNhaCC;
         private Button btnKhachHang;
-        private Button button9;
+        private Button btnDangXuat;
 
       
 
@@ -31,7 +30,6 @@ namespace QuanLiCuaHang_NongDuoc
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -39,7 +37,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlActive = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnDangXuat = new System.Windows.Forms.Button();
             this.btnKhachHang = new System.Windows.Forms.Button();
             this.btnNhaCC = new System.Windows.Forms.Button();
             this.btnSanPham = new System.Windows.Forms.Button();
@@ -52,8 +50,8 @@ namespace QuanLiCuaHang_NongDuoc
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNamePage = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pnlContentPages = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxUserAvatar)).BeginInit();
             this.panel2.SuspendLayout();
@@ -107,6 +105,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.picBoxUserAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBoxUserAvatar.TabIndex = 1;
             this.picBoxUserAvatar.TabStop = false;
+            this.picBoxUserAvatar.Click += new System.EventHandler(this.picBoxUserAvatar_Click);
             // 
             // label1
             // 
@@ -124,7 +123,7 @@ namespace QuanLiCuaHang_NongDuoc
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
             this.panel2.Controls.Add(this.pnlActive);
-            this.panel2.Controls.Add(this.button9);
+            this.panel2.Controls.Add(this.btnDangXuat);
             this.panel2.Controls.Add(this.btnKhachHang);
             this.panel2.Controls.Add(this.btnNhaCC);
             this.panel2.Controls.Add(this.btnSanPham);
@@ -145,20 +144,21 @@ namespace QuanLiCuaHang_NongDuoc
             this.pnlActive.Size = new System.Drawing.Size(10, 58);
             this.pnlActive.TabIndex = 7;
             // 
-            // button9
+            // btnDangXuat
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.Window;
-            this.button9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button9.Location = new System.Drawing.Point(0, 617);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(220, 50);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Đăng xuất";
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnDangXuat.BackColor = System.Drawing.SystemColors.Window;
+            this.btnDangXuat.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnDangXuat.FlatAppearance.BorderSize = 0;
+            this.btnDangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangXuat.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnDangXuat.Location = new System.Drawing.Point(0, 617);
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.Size = new System.Drawing.Size(220, 50);
+            this.btnDangXuat.TabIndex = 0;
+            this.btnDangXuat.Text = "Đăng xuất";
+            this.btnDangXuat.UseVisualStyleBackColor = false;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
             // btnKhachHang
             // 
@@ -173,6 +173,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnKhachHang.TabIndex = 1;
             this.btnKhachHang.Text = "Khách hàng";
             this.btnKhachHang.UseVisualStyleBackColor = false;
+            this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
             // 
             // btnNhaCC
             // 
@@ -187,6 +188,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnNhaCC.TabIndex = 2;
             this.btnNhaCC.Text = "Nhà CC";
             this.btnNhaCC.UseVisualStyleBackColor = false;
+            this.btnNhaCC.Click += new System.EventHandler(this.btnNhaCC_Click);
             // 
             // btnSanPham
             // 
@@ -201,6 +203,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.TabIndex = 3;
             this.btnSanPham.Text = "Sản phẩm";
             this.btnSanPham.UseVisualStyleBackColor = false;
+            this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
             // 
             // btnPhieuNhap
             // 
@@ -215,6 +218,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnPhieuNhap.TabIndex = 4;
             this.btnPhieuNhap.Text = "Phiếu nhập";
             this.btnPhieuNhap.UseVisualStyleBackColor = false;
+            this.btnPhieuNhap.Click += new System.EventHandler(this.btnPhieuNhap_Click);
             // 
             // btnHoaDon
             // 
@@ -229,6 +233,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnHoaDon.TabIndex = 5;
             this.btnHoaDon.Text = "Hóa đơn";
             this.btnHoaDon.UseVisualStyleBackColor = false;
+            this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
             // 
             // btnTrangChu
             // 
@@ -243,6 +248,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnTrangChu.TabIndex = 6;
             this.btnTrangChu.Text = "Trang chủ";
             this.btnTrangChu.UseVisualStyleBackColor = false;
+            this.btnTrangChu.Click += new System.EventHandler(this.btnTrangChu_Click);
             // 
             // panel3
             // 
@@ -256,7 +262,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.panel3.Controls.Add(this.lblNamePage);
             this.panel3.Location = new System.Drawing.Point(240, 80);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(833, 51);
+            this.panel3.Size = new System.Drawing.Size(833, 63);
             this.panel3.TabIndex = 2;
             // 
             // lblTimeRendering
@@ -264,7 +270,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblTimeRendering.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTimeRendering.AutoSize = true;
             this.lblTimeRendering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeRendering.Location = new System.Drawing.Point(627, 11);
+            this.lblTimeRendering.Location = new System.Drawing.Point(642, 20);
             this.lblTimeRendering.Name = "lblTimeRendering";
             this.lblTimeRendering.Size = new System.Drawing.Size(69, 29);
             this.lblTimeRendering.TabIndex = 6;
@@ -275,7 +281,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblDateRendering.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDateRendering.AutoSize = true;
             this.lblDateRendering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateRendering.Location = new System.Drawing.Point(256, 11);
+            this.lblDateRendering.Location = new System.Drawing.Point(301, 19);
             this.lblDateRendering.Name = "lblDateRendering";
             this.lblDateRendering.Size = new System.Drawing.Size(75, 29);
             this.lblDateRendering.TabIndex = 5;
@@ -286,7 +292,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(535, 11);
+            this.label3.Location = new System.Drawing.Point(561, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 29);
             this.label3.TabIndex = 4;
@@ -297,7 +303,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(175, 11);
+            this.label2.Location = new System.Drawing.Point(220, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 29);
             this.label2.TabIndex = 3;
@@ -309,29 +315,35 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblNamePage.BackColor = System.Drawing.Color.White;
             this.lblNamePage.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNamePage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNamePage.Location = new System.Drawing.Point(3, 0);
+            this.lblNamePage.Location = new System.Drawing.Point(3, 11);
             this.lblNamePage.Name = "lblNamePage";
             this.lblNamePage.Size = new System.Drawing.Size(166, 38);
             this.lblNamePage.TabIndex = 2;
             this.lblNamePage.Text = "Name Page";
             // 
-            // contextMenuStrip1
+            // pnlContentPages
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.pnlContentPages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlContentPages.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlContentPages.Location = new System.Drawing.Point(240, 163);
+            this.pnlContentPages.Name = "pnlContentPages";
+            this.pnlContentPages.Size = new System.Drawing.Size(833, 557);
+            this.pnlContentPages.TabIndex = 3;
             // 
-            // contextMenuStrip2
+            // timer1
             // 
-            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1085, 732);
+            this.Controls.Add(this.pnlContentPages);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -358,8 +370,8 @@ namespace QuanLiCuaHang_NongDuoc
         private Label lblNamePage;
         private Label lblEmail;
         private Label lblUsername;
-        private ContextMenuStrip contextMenuStrip1;
-        private ContextMenuStrip contextMenuStrip2;
         private Panel pnlActive;
+        private Panel pnlContentPages;
+        private Timer timer1;
     }
 }
