@@ -212,6 +212,10 @@
             this.btnThem.TabIndex = 18;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
+<<<<<<< HEAD
+=======
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
             // 
             // btnSua
             // 
@@ -227,6 +231,10 @@
             this.btnSua.TabIndex = 19;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
+<<<<<<< HEAD
+=======
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
             // 
             // cbbVaiTro
             // 

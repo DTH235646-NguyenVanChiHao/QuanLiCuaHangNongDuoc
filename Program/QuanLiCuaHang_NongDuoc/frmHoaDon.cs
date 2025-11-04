@@ -16,6 +16,7 @@ namespace QuanLiCuaHang_NongDuoc
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -33,5 +34,7 @@ namespace QuanLiCuaHang_NongDuoc
                 MessageBox.Show("thanh toán thành công", "Thông Báo", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }    
         }
+=======
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
     }
 }

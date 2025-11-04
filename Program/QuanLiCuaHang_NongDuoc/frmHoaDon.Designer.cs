@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿using System;
 
 namespace QuanLiCuaHang_NongDuoc
+=======
+﻿namespace QuanLiCuaHang_NongDuoc
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
 {
     partial class frmHoaDon
     {
@@ -22,6 +26,10 @@ namespace QuanLiCuaHang_NongDuoc
             base.Dispose(disposing);
         }
 
+<<<<<<< HEAD
+=======
+        #region Windows Form Designer generated code
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -30,6 +38,7 @@ namespace QuanLiCuaHang_NongDuoc
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -45,11 +54,14 @@ namespace QuanLiCuaHang_NongDuoc
             this.panel1.SuspendLayout();
             this.pnlHienThi.SuspendLayout();
             this.panel3.SuspendLayout();
+=======
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(156, 24);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -193,11 +205,29 @@ namespace QuanLiCuaHang_NongDuoc
             this.pnlHienThi.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+=======
+            this.label1.Location = new System.Drawing.Point(230, 152);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Hoá đơn";
+            // 
+            // frmHoaDon
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.RosyBrown;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Name = "frmHoaDon";
+            this.Text = "Hoá Đơn";
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
+<<<<<<< HEAD
         // Khai báo các biến thành viên (đặt ở đầu lớp frmHoaDon)
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThanhToan;
@@ -212,5 +242,10 @@ namespace QuanLiCuaHang_NongDuoc
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlHienThiSP;
+=======
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+>>>>>>> 3316b5bb2ca6c031132a68e5c07e8d71446aa92a
     }
 }
