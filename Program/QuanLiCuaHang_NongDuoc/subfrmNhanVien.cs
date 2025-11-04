@@ -141,4 +141,5 @@ namespace QuanLiCuaHang_NongDuoc
                 MessageBox.Show("Lỗi lấy trạng thái có sẵn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    }
 }

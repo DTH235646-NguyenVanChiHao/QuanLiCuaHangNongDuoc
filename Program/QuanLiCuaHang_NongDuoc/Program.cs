@@ -16,7 +16,7 @@ namespace QuanLiCuaHang_NongDuoc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMainApp());
+            Application.Run(new frmLogin());
         }
     }
 }

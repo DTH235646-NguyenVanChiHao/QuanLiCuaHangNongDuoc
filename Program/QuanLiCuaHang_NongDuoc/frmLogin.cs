@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Services;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,40 +16,17 @@ namespace QuanLiCuaHang_NongDuoc
     public partial class frmLogin : Form
     {
 
-          private bool Drag;
+        private bool Drag;
         private int MouseX;
         private int MouseY;
 
-        private const int WM_NCHITTEST = 0x84;
-        private const int HTCLIENT = 0x1;
-        private const int HTCAPTION = 0x2;
 
-        private bool m_aeroEnabled;
 
-        private const int CS_DROPSHADOW = 0x00020000;
-        private const int WM_NCPAINT = 0x0085;
-        private const int WM_ACTIVATEAPP = 0x001C;
-      
 
-       
 
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
 
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
 
-        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
-        [System.Runtime.InteropServices.DllImport("Gidi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
-        private static extern IntPtr CreateRoundRectRgn(
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-            );
 
         public struct MARGINS
         {
@@ -59,56 +37,27 @@ namespace QuanLiCuaHang_NongDuoc
 
         }
 
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case WM_NCHITTEST:
-                    if (m_aeroEnabled)
-                    {
-                        var v = 2;
-                        DwmSetWindowAttribute(this.Handle, 2, ref var, 4);
-                        MARGINS magins = new MARGINS()
-                        {
-                            bottomHeight = 1,
-                            leftWidth = 0,
-                            rightWidth = 0,
-                            topHeight = 0
-                        }; DwmExtendFrameIntoClientArea(this.Handle, ref magins);
-                    }
-                    break;
-                default: break;
-            }
-            base.WndProc(ref m);
-            if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT)
-                m.Result = (IntPtr)HTCAPTION;
-        }
-
-        #endregion
-        #region SQLconnection
-        DBConnection dbConnect = new DBConnection();
-        #endregion
 
         #region PublicDeclarations
         public string _pass = "";
         public bool _isactivate;
         #endregion
-
+        DBConnection dbConnect = new DBConnection();
         public frmLogin()
         {
             InitializeComponent();
-            m_aeroEnabled = true;
+
             txtEmail.Focus();
         }
-        /*
-        public void Alert(string msg, frmAlert.enmType type)
+
+        public void ThongBao(string msg, frmThongBao.enmType type)
         {
-            frmAlert frm = new frmAlert();
+            frmThongBao frm = new frmThongBao();
             frm.showAlert(msg, type);
         }
-        
 
-        public void HashPassword(string password)
+
+        public string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -121,34 +70,143 @@ namespace QuanLiCuaHang_NongDuoc
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (this.txtEmail.Text == "")
             {
-                CustomMessageBox.ShowMessage("Vui lòng nhập email!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập email!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmail.Focus();
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            if (this.txtPassword.Text == "")
             {
-                CustomMessageBox.ShowMessage("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPassword.Focus();
                 return;
             }
 
-            string enterEmail = txtEmail.Text;
-            string enterPassword = txtPassword.Text;
+            string enteredEmail = txtEmail.Text;
+            string enteredPassword = txtPassword.Text;
 
             try
             {
                 using (SqlConnection cn = dbConnect.GetConnection())
                 {
                     cn.Open();
-                    using(SqlCommand cmd = new SqlCommand("SELECT u.email, u.password, u.roleid, u.name, u.accountstatus, "))
+                    using (SqlCommand cmd = new SqlCommand("SELECT u.email, u.password, u.roleid, u.name, u.accountstatus, "))
+                    {
+                        cmd.Parameters.AddWithValue("@email", enteredEmail);
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                string storedEmail = dr["email"].ToString();
+                                string storedPasswordHash = dr["password"].ToString();
+                                int roleId = Convert.ToInt32(dr["roleId"]);
+                                string name = dr["name"].ToString();
+                                string accountStatus = dr["accountStatus"].ToString();
+
+                                if (accountStatus == "Deactivated")
+                                {
+                                    MessageBox.Show("Tài khoản của bạn đã ngưng hoạt động","THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                                    return;
+                                }
+
+                                string enteredPasswordHash = HashPassword(enteredPassword);
+
+                                if (enteredPasswordHash != storedPasswordHash)
+                                {
+                                    MessageBox.Show("Email hoặc mật khẩu của bạn không đúng!", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+
+                                MessageBox.Show("Welcome " + name,"THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                txtEmail.Clear();
+                                txtPassword.Clear();
+                                this.Close();
+
+                                this.Hide();
+
+                                if (roleId == 1)
+                                {
+                                    /*frmMainApp main = new frmMainApp();
+                                    main.lblUsername.Text = storedEmail;
+                                    main.lblRole.Text = "Admin";
+                                    main.lblFullName.Text = name;
+                                    main._pass = storedPasswordHash;
+                                    main.ShowDialog();*/
+                                }
+                                else
+                                {
+                                    /*frmMainApp main = new frmMainApp();
+                                    main.lblUsername.Text = storedEmail;
+                                    main.lblRole.Text = "Guest";
+                                    main.lblFullName.Text = name;
+                                    main._pass = storedPasswordHash;
+                                    main.ShowDialog();*/
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Email hoặc mật khẩu không đúng !","THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
                 }
             }
-            
-        }*/
-    }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult traloi;
+            traloi = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (traloi == DialogResult.OK)
+                Application.Exit();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            Drag = true;
+            MouseX = Cursor.Position.X - this.Left;
+            MouseY = Cursor.Position.Y - this.Top;
+        }
+
+        private void panel2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Drag)
+            {
+                this.Top = Cursor.Position.Y - MouseY;
+                this.Left = Cursor.Position.X - MouseX;
+            }
+        }
+
+        private void panel2_MouseUp(object sender, MouseEventArgs e)
+        {
+            Drag = false;
+        }
+
+        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            Drag = true;
+            MouseX = Cursor.Position.X - this.Left;
+            MouseY = Cursor.Position.Y - this.Top;
+        }
+
+        private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
+        {
+            Drag = true;
+            MouseX = Cursor.Position.X - this.Left;
+            MouseY = Cursor.Position.Y - this.Top;
+        }
+
+        private void pictureBox3_MouseUp(object sender, MouseEventArgs e)
+        {
+            Drag = false;
+        }
+    }
 }
 
