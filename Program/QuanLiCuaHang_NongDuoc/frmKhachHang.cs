@@ -120,9 +120,11 @@ namespace QuanLiCuaHang_NongDuoc
                                 dr["MaKH"].ToString(),
                                 dr["TenKH"].ToString(),
                                 dr["DiaChi"].ToString(),
-                                dr["SDT"].ToString(),
                                 dr["Email"].ToString(),
-                                dr["TrangThai"].ToString()
+                                dr["TrangThai"].ToString(),
+                                dr["SDT"].ToString()
+                                
+                                
                             );
                         }
                     }

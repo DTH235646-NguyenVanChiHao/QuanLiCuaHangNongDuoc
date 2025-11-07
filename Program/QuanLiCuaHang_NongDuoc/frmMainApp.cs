@@ -70,6 +70,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
+            this.btnLichSu.ForeColor = Color.Gray;
 
 
             //Hiệu ứng chuyển đổi màu khi nhấn button
@@ -127,7 +128,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
 
 
 
@@ -152,7 +153,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
 
 
 
@@ -182,7 +183,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
 
             //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
             //SetButtonColors(btnTrangChu,ActiveColor);
@@ -203,7 +204,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = SystemColors.InfoText;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
             //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
             //SetButtonColors(btnTrangChu,ActiveColor);
             pnlActive.Height = btnSanPham.Height;
@@ -223,7 +224,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = SystemColors.InfoText;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
             //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
             //SetButtonColors(btnTrangChu,ActiveColor);
             pnlActive.Height = btnNhaCC.Height;
@@ -243,7 +244,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = SystemColors.InfoText;
-
+            this.btnLichSu.ForeColor = Color.Gray;
             //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
             //SetButtonColors(btnTrangChu,ActiveColor);
             pnlActive.Height = btnKhachHang.Height;
@@ -267,7 +268,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.ForeColor = Color.Gray;
             this.btnNhaCC.ForeColor = Color.Gray;
             this.btnKhachHang.ForeColor = Color.Gray;
-
+            this.btnLichSu.ForeColor = Color.Gray;
             //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
             //SetButtonColors(btnTrangChu,ActiveColor);
             pnlActive.Height = btnTrangChu.Height;
@@ -292,6 +293,27 @@ namespace QuanLiCuaHang_NongDuoc
             this.lblTimeRendering.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
+        private void btnLichSu_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmLichSu());
 
+            //
+            this.btnTrangChu.ForeColor = Color.Gray; // Nút đang được chọn
+            this.btnHoaDon.ForeColor = Color.Gray;              // Nút không chọn
+            this.btnPhieuNhap.ForeColor = Color.Gray;
+            this.btnSanPham.ForeColor = Color.Gray;
+            this.btnNhaCC.ForeColor = Color.Gray;
+            this.btnKhachHang.ForeColor = Color.Gray;
+           
+            this.btnLichSu.ForeColor = SystemColors.InfoText;
+
+            //Hiệu ứng khi chuyển trang : Thanh màu cam - di chuyển theo button
+            //SetButtonColors(btnTrangChu,ActiveColor);
+            pnlActive.Height = btnLichSu.Height;
+            pnlActive.Top = btnLichSu.Top;
+
+            //hiển thị đè lên các control khác nếu chúng bị chồng lấp.
+            pnlActive.BringToFront();
+        }
     }
 }

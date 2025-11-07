@@ -71,6 +71,9 @@ ADD HinhAnh VARBINARY(MAX);
 ALTER TABLE NhanVien
 DROP COLUMN HinhAnh;
 
+Alter Table SanPham
+Drop Column HinhAnh;
+
 
 
 
@@ -108,7 +111,6 @@ CREATE TABLE SanPham (
     GiaMua DECIMAL(18,2),
     GiaBan DECIMAL(18,2) NOT NULL,
     SoLuongConLai INT,
-    HinhAnh NVARCHAR(255),
     DonViTinh NVARCHAR(50), -- KG - bịch - chai ...
     TrangThai NVARCHAR(50) -- ConHang - SapHetHang - HetHang
 );
@@ -280,11 +282,12 @@ SELECT * FROM ChiTietHoaDon;
 --3. Delete 
 --Delete users
 
-delete from ChiTietPhieuNhap where MaPhieuNhap IN (Select MaPhieuNhap from PhieuNhap where MaNhanVien = )
+delete from ChiTietPhieuNhap where MaPhieuNhap IN (Select MaPhieuNhap from PhieuNhap where MaNhanVien = );
 
-delete from PhieuNhap where MaNhanVien = 
+delete from PhieuNhap where MaNhanVien = ;
 
-
+alter table SanPham
+delete column HinhAnh
 
 
 -- Step 1: Delete invoice details related to that employee's invoices

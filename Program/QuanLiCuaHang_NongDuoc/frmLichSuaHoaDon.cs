@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QuanLiCuaHang_NongDuoc
 {
-    public partial class frmSwitchboard : Form
+    public partial class frmLichSuaHoaDon : Form
     {
-        public frmSwitchboard()
+        public frmLichSuaHoaDon()
         {
             InitializeComponent();
         }
