@@ -2,6 +2,15 @@
 {
     partial class frmNhanVien
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
@@ -14,6 +23,25 @@
         }
 
         #region Windows Form Designer generated code
+
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(221, 207);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nhân viên";
 
         private void InitializeComponent()
         {
@@ -252,48 +280,18 @@
             this.label6.Size = new System.Drawing.Size(86, 20);
             this.label6.TabIndex = 13;
             this.label6.Text = "Tổng trang";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // SoTT
-            // 
-            this.SoTT.HeaderText = "Nhân Viên Thứ";
-            this.SoTT.MinimumWidth = 8;
-            this.SoTT.Name = "SoTT";
-            // 
-            // MaNhanVien
-            // 
-            this.MaNhanVien.HeaderText = "Mã nhân viên";
-            this.MaNhanVien.MinimumWidth = 8;
-            this.MaNhanVien.Name = "MaNhanVien";
-            // 
-            // TenNhanVien
-            // 
-            this.TenNhanVien.HeaderText = "Tên nhân viên";
-            this.TenNhanVien.MinimumWidth = 8;
-            this.TenNhanVien.Name = "TenNhanVien";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 8;
-            this.Email.Name = "Email";
-            // 
-            // VaiTro
-            // 
-            this.VaiTro.HeaderText = "Vai trò";
-            this.VaiTro.MinimumWidth = 8;
-            this.VaiTro.Name = "VaiTro";
-            // 
-            // TrangThaiTaiKhoan
-            // 
-            this.TrangThaiTaiKhoan.HeaderText = "Trạng thái tài khoản";
-            this.TrangThaiTaiKhoan.MinimumWidth = 8;
-            this.TrangThaiTaiKhoan.Name = "TrangThaiTaiKhoan";
             // 
             // frmNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
+            this.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Name = "frmNhanVien";
+            this.Text = "Nhân Viên";
+
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(1160, 480);
             this.Controls.Add(this.label6);
@@ -315,12 +313,18 @@
             this.Name = "frmNhanVien";
             this.Text = "Quản lý Nhân Viên";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSNV)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
+
+        private System.Windows.Forms.Label label1;
+    }
+}
 
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnSua;
@@ -344,4 +348,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VaiTro;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiTaiKhoan;
     }
-}
+
+

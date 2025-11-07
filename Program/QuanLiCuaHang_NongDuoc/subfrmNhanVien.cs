@@ -28,6 +28,7 @@ namespace QuanLiCuaHang_NongDuoc
 
             //lấy vai trò + Trạng thái có sẵn từ db
             this.getVaiTroCoSan();
+
             this.getTrangThaiCoSan();
 
             //Mặc định nút thêm được kích hoạt, nút sửa bị vô hiệu hóa
@@ -133,8 +134,18 @@ namespace QuanLiCuaHang_NongDuoc
                 string[] dt = {"Hoạt động", "Ngưng hoạt động", "Bị khoá"}; 
                 
                     cbbTrangThai.DataSource = dt;
+
                     cbbTrangThai.SelectedIndex = 0;
                 
+
+
+                    //Hiển thị tên vai trò -> mã vai trò là giá trị để truy xuất
+                    //display: hiển thị ra bên ngoài - value : là giá trị để truy xuất hoặc dugnf để tính toán
+                    cbbTrangThai.DisplayMember = "TrangThai";
+                    cbbTrangThai.ValueMember = "TrangThai";
+                    cbbTrangThai.SelectedIndex = -1;
+                }
+
             }
             catch (Exception ex)
             {
@@ -254,4 +265,4 @@ namespace QuanLiCuaHang_NongDuoc
             }
         }
     }
-}
+
