@@ -158,6 +158,28 @@ CREATE TABLE ChiTietHoaDon (
 select * from dbo.NhanVien
 
 select * from KhachHang
+
+-- 
+    SELECT 
+    nv.MaNhanVien, 
+    nv.TenNhanVien, 
+    nv.Email, 
+    vt.VaiTro, 
+    nv.TrangThaiTaiKhoan
+FROM NhanVien AS nv
+INNER JOIN VaiTro AS vt 
+    ON nv.MaVaiTro = vt.MaVaiTro
+WHERE 
+    (nv.MaNhanVien LIKE '%' + @search + '%' OR nv.TenNhanVien LIKE '%' + @search + '%' OR nv.Email LIKE '%' + @search + '%' OR
+     vt.VaiTro LIKE '%' + @search + '%' OR nv.TrangThaiTaiKhoan LIKE '%' + @search + '%')
+ORDER BY nv.MaNhanVien DESC
+OFFSET @offset ROWS
+FETCH NEXT @fetch ROWS ONLY;
+
+--Giải thích : offset + fetch là dùng cho phân trang -> không tải cùng lúc các dữ liệu -> gây chậm
+-- offset: số trang bị bỏ qua ban đầu -> fetch là lấy từ trang bị bỏ
+--ví dụ : offset = 10 , fetch 11 : bỏ qua 10 dòng đầu : lấy 11 dòng tiếp the0
+
 --2. Insert
 
 
@@ -256,4 +278,40 @@ SELECT * FROM ChiTietHoaDon;
 
 
 --3. Delete 
---4. Update
+--Delete users
+
+delete from ChiTietPhieuNhap where MaPhieuNhap IN (Select MaPhieuNhap from PhieuNhap where MaNhanVien = )
+
+delete from PhieuNhap where MaNhanVien = 
+
+
+
+
+-- Step 1: Delete invoice details related to that employee's invoices
+DELETE FROM ChiTietHoaDon
+WHERE MaHD IN (
+    SELECT MaHD
+    FROM HoaDon
+    WHERE MaNhanVien = 2
+);
+
+-- Step 2: Delete invoices of that employee
+DELETE FROM HoaDon
+WHERE MaNhanVien = 2;
+
+-- Step 3: Finally delete the employee record
+DELETE FROM NhanVien
+WHERE MaNhanVien = 2;
+
+--4. Update\
+SELECT distinct TrangThaiTaiKhoan FROM  NhanVien
+
+update NhanVien set Email = @Email, MatKhau = @MatKhau , TenNhanVien = @TenNhanVien,MaVaiTro = @MaVaiTro, TrangThaiTaiKhoan = @TrangThaiTaiKhoan
+where MaNhanVien = @MaNhanVien
+
+DBCC CHECKIDENT ('NhanVien', RESEED, 1);
+
+select *
+from NhanVien
+order by MaNhanVien 
+desc

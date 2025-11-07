@@ -23,19 +23,22 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSort = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.cboTieuChi = new System.Windows.Forms.ComboBox();
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.dgvDSNV = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbbTrangCanTIm = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTrangHienTai = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblTongTrang = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.SoTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VaiTro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThaiTaiKhoan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSNV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +55,7 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
             // 
@@ -66,6 +70,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -80,6 +85,7 @@
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xoá";
             this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSort
             // 
@@ -89,37 +95,23 @@
             this.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSort.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnSort.ForeColor = System.Drawing.Color.White;
-            this.btnSort.Location = new System.Drawing.Point(616, 10);
+            this.btnSort.Location = new System.Drawing.Point(726, 10);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(175, 40);
             this.btnSort.TabIndex = 3;
             this.btnSort.Text = "Sắp xếp";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(812, 13);
+            this.txtSearch.Location = new System.Drawing.Point(918, 10);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(230, 34);
             this.txtSearch.TabIndex = 4;
-            // 
-            // cboTieuChi
-            // 
-            this.cboTieuChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboTieuChi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTieuChi.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboTieuChi.FormattingEnabled = true;
-            this.cboTieuChi.Items.AddRange(new object[] {
-            "Mã nhân viên",
-            "Tên nhân viên",
-            "Email",
-            "Chức vụ"});
-            this.cboTieuChi.Location = new System.Drawing.Point(1048, 10);
-            this.cboTieuChi.Name = "cboTieuChi";
-            this.cboTieuChi.Size = new System.Drawing.Size(100, 36);
-            this.cboTieuChi.TabIndex = 5;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnFirst
             // 
@@ -132,6 +124,7 @@
             this.btnFirst.TabIndex = 0;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnPrev
             // 
@@ -144,6 +137,7 @@
             this.btnPrev.TabIndex = 1;
             this.btnPrev.Text = "<";
             this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
@@ -156,6 +150,7 @@
             this.btnNext.TabIndex = 2;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnLast
             // 
@@ -168,14 +163,16 @@
             this.btnLast.TabIndex = 3;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // dgvDSNV
             // 
             this.dgvDSNV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDSNV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDSNV.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -184,38 +181,23 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDSNV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDSNV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDSNV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SoTT,
+            this.MaNhanVien,
+            this.TenNhanVien,
+            this.Email,
+            this.VaiTro,
+            this.TrangThaiTaiKhoan});
             this.dgvDSNV.Location = new System.Drawing.Point(12, 56);
+            this.dgvDSNV.MultiSelect = false;
             this.dgvDSNV.Name = "dgvDSNV";
+            this.dgvDSNV.RowHeadersVisible = false;
             this.dgvDSNV.RowHeadersWidth = 62;
             this.dgvDSNV.RowTemplate.Height = 28;
+            this.dgvDSNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDSNV.Size = new System.Drawing.Size(1136, 365);
             this.dgvDSNV.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 442);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Trang";
-            // 
-            // cbbTrangCanTIm
-            // 
-            this.cbbTrangCanTIm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbbTrangCanTIm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbTrangCanTIm.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbbTrangCanTIm.FormattingEnabled = true;
-            this.cbbTrangCanTIm.Items.AddRange(new object[] {
-            "Mã nhân viên",
-            "Tên nhân viên",
-            "Email",
-            "Chức vụ"});
-            this.cbbTrangCanTIm.Location = new System.Drawing.Point(68, 432);
-            this.cbbTrangCanTIm.Name = "cbbTrangCanTIm";
-            this.cbbTrangCanTIm.Size = new System.Drawing.Size(75, 36);
-            this.cbbTrangCanTIm.TabIndex = 8;
+            this.dgvDSNV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSNV_CellContentClick);
             // 
             // label2
             // 
@@ -226,6 +208,7 @@
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 9;
             this.label2.Text = "Trang";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblTrangHienTai
             // 
@@ -236,6 +219,7 @@
             this.lblTrangHienTai.Size = new System.Drawing.Size(18, 20);
             this.lblTrangHienTai.TabIndex = 10;
             this.lblTrangHienTai.Text = "#";
+            this.lblTrangHienTai.Click += new System.EventHandler(this.lblTrangHienTai_Click);
             // 
             // label4
             // 
@@ -246,6 +230,7 @@
             this.label4.Size = new System.Drawing.Size(35, 20);
             this.label4.TabIndex = 11;
             this.label4.Text = "của";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblTongTrang
             // 
@@ -256,6 +241,7 @@
             this.lblTongTrang.Size = new System.Drawing.Size(18, 20);
             this.lblTongTrang.TabIndex = 12;
             this.lblTongTrang.Text = "#";
+            this.lblTongTrang.Click += new System.EventHandler(this.lblTongTrang_Click);
             // 
             // label6
             // 
@@ -266,6 +252,43 @@
             this.label6.Size = new System.Drawing.Size(86, 20);
             this.label6.TabIndex = 13;
             this.label6.Text = "Tổng trang";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // SoTT
+            // 
+            this.SoTT.HeaderText = "Nhân Viên Thứ";
+            this.SoTT.MinimumWidth = 8;
+            this.SoTT.Name = "SoTT";
+            // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.MinimumWidth = 8;
+            this.MaNhanVien.Name = "MaNhanVien";
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.MinimumWidth = 8;
+            this.TenNhanVien.Name = "TenNhanVien";
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 8;
+            this.Email.Name = "Email";
+            // 
+            // VaiTro
+            // 
+            this.VaiTro.HeaderText = "Vai trò";
+            this.VaiTro.MinimumWidth = 8;
+            this.VaiTro.Name = "VaiTro";
+            // 
+            // TrangThaiTaiKhoan
+            // 
+            this.TrangThaiTaiKhoan.HeaderText = "Trạng thái tài khoản";
+            this.TrangThaiTaiKhoan.MinimumWidth = 8;
+            this.TrangThaiTaiKhoan.Name = "TrangThaiTaiKhoan";
             // 
             // frmNhanVien
             // 
@@ -278,14 +301,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblTrangHienTai);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbbTrangCanTIm);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvDSNV);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
-            this.Controls.Add(this.cboTieuChi);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.btnXoa);
@@ -307,18 +327,21 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.ComboBox cboTieuChi;
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.DataGridView dgvDSNV;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbbTrangCanTIm;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTrangHienTai;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblTongTrang;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoTT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VaiTro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiTaiKhoan;
     }
 }

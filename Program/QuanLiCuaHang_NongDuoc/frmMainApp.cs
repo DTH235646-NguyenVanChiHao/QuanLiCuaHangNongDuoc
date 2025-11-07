@@ -215,7 +215,7 @@ namespace QuanLiCuaHang_NongDuoc
 
         private void btnNhaCC_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmNhaCC());
+            OpenChildForm(new frmNhaCungCap());
             //set màu cho button khi được chọn
             this.btnTrangChu.ForeColor = Color.Gray; // Nút đang được chọn
             this.btnHoaDon.ForeColor = Color.Gray;              // Nút không chọn
