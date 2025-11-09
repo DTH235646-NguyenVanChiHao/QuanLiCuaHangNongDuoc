@@ -89,11 +89,16 @@ namespace QuanLiCuaHang_NongDuoc
             {
                 cn.Open();
                 //Đém số lượng nhân viên = kết hợp tất cả các cột -> chỉ cần search là ra hết
-                string where = "nv.MaNhanVien LIKE '%' + @search + '%' OR nv.TenNhanVien LIKE '%' + @search + '%' OR nv.Email LIKE '%' + @search + '%'  OR nv.TrangThaiTaiKhoan LIKE '%' + @search + '%'";
+                string where = @"
+        nv.MaNhanVien LIKE @search 
+        OR nv.TenNhanVien LIKE @search 
+        OR nv.Email LIKE @search 
+        OR nv.TrangThaiTaiKhoan LIKE @search ";
                 string query = $"select count(*) from NhanVien as nv where {where}";
+
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
-                    cmd.Parameters.AddWithValue("@search", $"{txtSearch.Text}");
+                    cmd.Parameters.AddWithValue("@search", "%" + txtSearch.Text  + "%");
                     this.TongNV = (int) cmd.ExecuteScalar();
 
                     int TongTrang = (int)Math.Round((double)this.TongNV / this.SoNVDuocHienThi);
@@ -322,7 +327,7 @@ namespace QuanLiCuaHang_NongDuoc
             {
                 cn.Open();
                 //Đém số lượng nhân viên = kết hợp tất cả các cột -> chỉ cần search là ra hết
-                string where = "nv.MaNhanVien LIKE '%' + @search + '%' OR nv.TenNhanVien LIKE '%' + @search + '%' OR nv.Email LIKE '%' + @search + '%'  OR nv.TrangThaiTaiKhoan LIKE '%' + @search + '%'";
+                string where = "nv.MaNhanVien LIKE  '%' + @search + '%' OR nv.TenNhanVien LIKE '%' + @search + '%' OR nv.Email LIKE '%' + @search + '%'  OR nv.TrangThaiTaiKhoan LIKE '%' + @search + '%'";
                 string query = $"select count(*) from NhanVien as nv where {where}";
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {

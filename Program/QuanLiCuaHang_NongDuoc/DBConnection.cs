@@ -26,7 +26,7 @@ namespace QuanLiCuaHang_NongDuoc
 
             string tenDatabase_ChiHao = "QuanLiCuaHangNongDuoc";
             //Khởi tạo chuỗi dùng để kết nối CSDL
-            this.connectionString = $"Data Source={datasource_ThuVien};Initial Catalog={tenDatabase_ChiHao};Integrated Security=True";
+            this.connectionString = $"Data Source={datasource_ChiHao};Initial Catalog={tenDatabase_ChiHao};Integrated Security=True";
 
 
         }

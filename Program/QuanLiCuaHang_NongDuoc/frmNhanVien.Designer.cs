@@ -121,7 +121,7 @@
             this.btnFirst.Location = new System.Drawing.Point(454, 427);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(50, 41);
-            this.btnFirst.TabIndex = 0;
+            this.btnFirst.TabIndex = 5;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
@@ -134,7 +134,7 @@
             this.btnPrev.Location = new System.Drawing.Point(510, 427);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(50, 41);
-            this.btnPrev.TabIndex = 1;
+            this.btnPrev.TabIndex = 6;
             this.btnPrev.Text = "<";
             this.btnPrev.UseVisualStyleBackColor = false;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
@@ -147,7 +147,7 @@
             this.btnNext.Location = new System.Drawing.Point(574, 427);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(50, 41);
-            this.btnNext.TabIndex = 2;
+            this.btnNext.TabIndex = 7;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -160,7 +160,7 @@
             this.btnLast.Location = new System.Drawing.Point(630, 427);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(50, 41);
-            this.btnLast.TabIndex = 3;
+            this.btnLast.TabIndex = 8;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
@@ -172,15 +172,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDSNV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDSNV.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDSNV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDSNV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDSNV.ColumnHeadersHeight = 34;
             this.dgvDSNV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SoTT,
             this.MaNhanVien,
@@ -189,15 +182,12 @@
             this.VaiTro,
             this.TrangThaiTaiKhoan});
             this.dgvDSNV.Location = new System.Drawing.Point(12, 56);
-            this.dgvDSNV.MultiSelect = false;
             this.dgvDSNV.Name = "dgvDSNV";
             this.dgvDSNV.RowHeadersVisible = false;
             this.dgvDSNV.RowHeadersWidth = 62;
             this.dgvDSNV.RowTemplate.Height = 28;
-            this.dgvDSNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDSNV.Size = new System.Drawing.Size(1136, 365);
-            this.dgvDSNV.TabIndex = 6;
-            this.dgvDSNV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSNV_CellContentClick);
+            this.dgvDSNV.TabIndex = 9;
             // 
             // label2
             // 
@@ -206,9 +196,8 @@
             this.label2.Location = new System.Drawing.Point(917, 437);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Trang";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblTrangHienTai
             // 
@@ -217,9 +206,8 @@
             this.lblTrangHienTai.Location = new System.Drawing.Point(973, 437);
             this.lblTrangHienTai.Name = "lblTrangHienTai";
             this.lblTrangHienTai.Size = new System.Drawing.Size(18, 20);
-            this.lblTrangHienTai.TabIndex = 10;
+            this.lblTrangHienTai.TabIndex = 3;
             this.lblTrangHienTai.Text = "#";
-            this.lblTrangHienTai.Click += new System.EventHandler(this.lblTrangHienTai_Click);
             // 
             // label4
             // 
@@ -228,9 +216,8 @@
             this.label4.Location = new System.Drawing.Point(997, 437);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 20);
-            this.label4.TabIndex = 11;
+            this.label4.TabIndex = 2;
             this.label4.Text = "của";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblTongTrang
             // 
@@ -239,9 +226,8 @@
             this.lblTongTrang.Location = new System.Drawing.Point(1038, 437);
             this.lblTongTrang.Name = "lblTongTrang";
             this.lblTongTrang.Size = new System.Drawing.Size(18, 20);
-            this.lblTongTrang.TabIndex = 12;
+            this.lblTongTrang.TabIndex = 1;
             this.lblTongTrang.Text = "#";
-            this.lblTongTrang.Click += new System.EventHandler(this.lblTongTrang_Click);
             // 
             // label6
             // 
@@ -250,25 +236,24 @@
             this.label6.Location = new System.Drawing.Point(1062, 437);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 20);
-            this.label6.TabIndex = 13;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Tổng trang";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // SoTT
             // 
-            this.SoTT.HeaderText = "Nhân Viên Thứ";
+            this.SoTT.HeaderText = "Số thứ tự";
             this.SoTT.MinimumWidth = 8;
             this.SoTT.Name = "SoTT";
             // 
             // MaNhanVien
             // 
-            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.HeaderText = "Mã Nhân Viên";
             this.MaNhanVien.MinimumWidth = 8;
             this.MaNhanVien.Name = "MaNhanVien";
             // 
             // TenNhanVien
             // 
-            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.HeaderText = "Tên Nhân Viên";
             this.TenNhanVien.MinimumWidth = 8;
             this.TenNhanVien.Name = "TenNhanVien";
             // 
@@ -286,7 +271,7 @@
             // 
             // TrangThaiTaiKhoan
             // 
-            this.TrangThaiTaiKhoan.HeaderText = "Trạng thái tài khoản";
+            this.TrangThaiTaiKhoan.HeaderText = "Trạng Thái Tài Khoản";
             this.TrangThaiTaiKhoan.MinimumWidth = 8;
             this.TrangThaiTaiKhoan.Name = "TrangThaiTaiKhoan";
             // 

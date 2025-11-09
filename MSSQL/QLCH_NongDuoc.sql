@@ -254,17 +254,17 @@ VALUES
 -- Hoa don
 INSERT INTO HoaDon (NgayNhap, MaNhanVien, MaKH, PhanTramGiam)
 VALUES
-('2025-10-25', 2, 1, 5.0),
-('2025-10-28', 2, 2, 0),
-('2025-10-30', 2, 3, 10.0);
+('2025-10-25', 4, 1, 5.0),
+('2025-10-28', 4, 2, 0),
+('2025-10-30', 4, 3, 10.0);
 
 
 -- Chi tiet hoa don
 INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong, ThanhTien)
 VALUES
-(1, 1, 2, 2 * 50000 * (1 - 0.05)),  -- Giảm 5%
-(2, 2, 1, 1 * 250000),
-(3, 3, 1, 1 * 230000 * (1 - 0.10));  -- Giảm 10%
+(5, 1, 2, 2 * 50000 * (1 - 0.05)),  -- Giảm 5%
+(6, 2, 1, 1 * 250000),
+(7, 3, 1, 1 * 230000 * (1 - 0.10));  -- Giảm 10%
 
 
 -- check
@@ -278,7 +278,9 @@ SELECT * FROM ChiTietPhieuNhap;
 SELECT * FROM HoaDon;
 SELECT * FROM ChiTietHoaDon;
 
+Select TenNhanVien from NhanVien where MaNhanVien = 
 
+Mã hoá đơn (MaHD) - Ngày nhập (NgayNhap) - Tên Nhân Viên (TenNhanVien) - Mã Nhân Viên  (MaNhanVien) - Phần trăm giảm (PhanTramGiam) - Mã sản phẩm (MaSP) - Số lượng (SoLuong) - Phần trăm giảm (PhanTramGiam) - ThanhTien
 --3. Delete 
 --Delete users
 
@@ -318,3 +320,47 @@ select *
 from NhanVien
 order by MaNhanVien 
 desc
+
+
+---
+ SELECT 
+                        hd.MaHD,
+                        hd.NgayNhap,    
+                        nv.MaNhanVien,
+                        nv.TenNhanVien,
+                        hd.PhanTramGiam,
+                        sp.MaSP,
+                        sp.TenSP,
+                        sp.GiaBan,
+                        ct.SoLuong,
+                        ct.ThanhTien,
+                        kh.MaKH,
+                        kh.TenKH,
+                        kh.SDT
+                    FROM HoaDon hd
+                    INNER JOIN ChiTietHoaDon as ct ON hd.MaHD = ct.MaHD
+                    LEFT JOIN NhanVien nv ON hd.MaNhanVien = nv.MaNhanVien
+                    LEFT JOIN KhachHang kh ON hd.MaKH = kh.MaKH
+                    LEFT JOIN SanPham sp ON sp.MaSP = ct.MaSP
+                    WHERE hd.MaHD LIKE @MaHD
+                    ORDER BY hd.NgayNhap DESC
+---
+
+
+                    SELECT 
+                        hd.MaHD,
+                        hd.NgayNhap,
+                
+                        nv.TenNhanVien,
+                        hd.PhanTramGiam,
+                       sp.TenSP,
+                        ct.SoLuong,
+                        ct.ThanhTien,
+                        kh.TenKH
+                    FROM HoaDon hd
+                    INNER JOIN ChiTietHoaDon as ct ON hd.MaHD = ct.MaHD
+                    LEFT JOIN NhanVien nv ON hd.MaNhanVien = nv.MaNhanVien
+                    LEFT JOIN KhachHang kh ON hd.MaKH = kh.MaKH
+                    left join SanPham as sp on sp.MaSP = ct.MaSP
+                    WHERE hd.MaHD = 5
+                    ORDER BY hd.NgayNhap DESC
