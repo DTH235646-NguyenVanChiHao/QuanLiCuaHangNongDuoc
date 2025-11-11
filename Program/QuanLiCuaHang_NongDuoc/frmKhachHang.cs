@@ -20,7 +20,7 @@ namespace QuanLiCuaHang_NongDuoc
         //Phân Trang
         private int TrangHIenTai = 1;
         private int TongTrang = 1;
-        private int SoKHDuocHienThi = 10; //Mặc định số lượng hiển thị trên một trang
+        private int SoKHDuocHienThi = 5; //Mặc định số lượng hiển thị trên một trang
         private int TongKH = 1;
 
 
@@ -34,6 +34,7 @@ namespace QuanLiCuaHang_NongDuoc
         //Hien thi trang
         private void HienThiSoTrang()
         {
+            //this.TongKH / this.SoKHDuocHienThi : int / int = mất dữ liệu => ép kiểu double
             int TongTrang = (int)Math.Round((double)this.TongKH / this.SoKHDuocHienThi);
 
             lblTongTrang.Text = TongTrang == 0 ? "1" : TongTrang.ToString();

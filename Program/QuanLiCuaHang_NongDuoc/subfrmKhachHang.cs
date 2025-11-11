@@ -20,6 +20,9 @@ namespace QuanLiCuaHang_NongDuoc
         //Dùng để tái kích hoạt form tải lại table()
         frmKhachHang kh;
 
+        //anchor
+        private bool isKH = true;
+
         public subfrmKhachHang(frmKhachHang khachhang)
         {
             InitializeComponent();
@@ -31,8 +34,27 @@ namespace QuanLiCuaHang_NongDuoc
             //Mặc định nút thêm được kích hoạt, nút sửa bị vô hiệu hóa
             this.btnThem.Enabled = true;
             this.btnSua.Enabled = false;
+
+            //Anchor
+            
         }
 
+
+        public subfrmKhachHang()
+        {
+            InitializeComponent();
+       
+
+            //Lấy trạng thái có sẵn
+            this.getTrangThaiCoSan();
+
+            //Mặc định nút thêm được kích hoạt, nút sửa bị vô hiệu hóa
+            this.btnThem.Enabled = true;
+            this.btnSua.Enabled = false;
+
+            //
+            this.isKH = false;
+        }
         public void ThongBao(string msg, frmThongBao.enmType type)
         {
             frmThongBao f = new frmThongBao();
@@ -103,9 +125,9 @@ namespace QuanLiCuaHang_NongDuoc
                         //Ma KH Tu tao
                         using (SqlCommand cmd = cn.CreateCommand())
                         {
-                            cmd.CommandText = "INSERT INTO KhachHang (TenKH, DiaChi, SDT, Email, TrangThai) " +
-                                       "VALUES (@TenKH, @DiaChi, @SDT, @Email, @TrangThai)";
-
+                            cmd.CommandText = "INSERT INTO KhachHang (MaKH,TenKH, DiaChi, SDT, Email, TrangThai) " +
+                                       "VALUES (@MaKH,@TenKH, @DiaChi, @SDT, @Email, @TrangThai)";
+                            cmd.Parameters.AddWithValue("@MaKH", txtMaKH.Text);
                             cmd.Parameters.AddWithValue("@TenKH", txtTenKH.Text);
                             cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text);
                             cmd.Parameters.AddWithValue("@SDT", txtSDT.Text);
@@ -161,8 +183,13 @@ namespace QuanLiCuaHang_NongDuoc
                         clear();
                         this.Close();
 
-                        this.kh.LoadKhachHang();
-                        this.ThongBao("Sửa khách hàng thành công!", frmThongBao.enmType.Success);
+                        if (isKH)
+                        {
+                            this.kh.LoadKhachHang();
+                            this.ThongBao("Sửa khách hàng thành công!", frmThongBao.enmType.Success);
+                        }
+
+                     
                     }
                 }
             }

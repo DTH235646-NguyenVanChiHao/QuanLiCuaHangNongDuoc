@@ -62,17 +62,7 @@ namespace QuanLiCuaHang_NongDuoc
         }
 
 
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                string hashedPassword = Convert.ToBase64String(hashBytes);
-                return hashedPassword;
-
-            }
-        }
+        
         //======================================Các hàm xử lí
         public void clear()
         {
@@ -156,7 +146,7 @@ namespace QuanLiCuaHang_NongDuoc
                     return;
                 }
 
-                string hashedPassword = this.HashPassword(txtMK.Text);
+               
 
                 DialogResult dg;
                 dg = MessageBox.Show("Bạn có chắc muốn thêm nhân viên này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -168,12 +158,12 @@ namespace QuanLiCuaHang_NongDuoc
                         //Ma NV Tu tao
                         using (SqlCommand cmd = cn.CreateCommand())
                         {
-                            cmd.CommandText = "INSERT INTO NhanVien ( TenNhanVien, Email, MatKhau, MaVaiTro, TrangThaiTaiKhoan) " +
-                                       "VALUES (@TenNhanVien, @Email, @MatKhau, @MaVaiTro, @TrangThaiTaiKhoan)";
-
+                            cmd.CommandText = "INSERT INTO NhanVien (MaNhanVien, TenNhanVien, Email, MatKhau, MaVaiTro, TrangThaiTaiKhoan) " +
+                                       "VALUES (@MaNhanVien,@TenNhanVien, @Email, @MatKhau, @MaVaiTro, @TrangThaiTaiKhoan)";
+                            cmd.Parameters.AddWithValue("@MaNhanVien", txtMaNhanVien.Text);
                             cmd.Parameters.AddWithValue("@TenNhanVien", txtTenNV.Text);
                             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                            cmd.Parameters.AddWithValue("@MatKhau", hashedPassword);
+                            cmd.Parameters.AddWithValue("@MatKhau", txtMK.Text);
                             cmd.Parameters.AddWithValue("@MaVaiTro", cbbVaiTro.SelectedValue);
                             cmd.Parameters.AddWithValue("@TrangThaiTaiKhoan", cbbTrangThai.SelectedValue);
 
@@ -212,7 +202,7 @@ namespace QuanLiCuaHang_NongDuoc
                 }
 
 
-                string hashedPassword = this.HashPassword(txtMK.Text);
+            
 
                 DialogResult dg;
                 dg = MessageBox.Show("Bạn có chắc muốn sửa nhân viên này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -231,7 +221,7 @@ namespace QuanLiCuaHang_NongDuoc
                             cmd.Parameters.AddWithValue("@MaNhanVien", txtMaNhanVien.Text);
                             cmd.Parameters.AddWithValue("@TenNhanVien", txtTenNV.Text);
                             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                            cmd.Parameters.AddWithValue("@MatKhau", hashedPassword);
+                            cmd.Parameters.AddWithValue("@MatKhau", txtMK.Text);
                             cmd.Parameters.AddWithValue("@MaVaiTro", cbbVaiTro.SelectedValue);
                             cmd.Parameters.AddWithValue("@TrangThaiTaiKhoan", cbbTrangThai.SelectedValue);
 
@@ -253,5 +243,7 @@ namespace QuanLiCuaHang_NongDuoc
                 MessageBox.Show("Lỗi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }

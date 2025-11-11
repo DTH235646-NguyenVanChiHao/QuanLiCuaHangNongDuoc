@@ -63,12 +63,9 @@ namespace QuanLiCuaHang_NongDuoc
             try
             {
                 if (!KiemTraGiaTriNhap())
-                {
                     return;
-                }
 
-                DialogResult dg;
-                dg = MessageBox.Show("Bạn có chắc muốn thêm nhà cung cấp này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dg = MessageBox.Show("Bạn có chắc muốn thêm nhà cung cấp này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
                     using (SqlConnection cn = db.GetConnection())
@@ -76,9 +73,11 @@ namespace QuanLiCuaHang_NongDuoc
                         cn.Open();
                         using (SqlCommand cmd = cn.CreateCommand())
                         {
-                            cmd.CommandText = "INSERT INTO NhaCungCap (TenNhaCC, DiaChi, SDT, Email) " +
-                                       "VALUES (@TenNhaCC, @DiaChi, @SDT, @Email)";
+                            // ✅ Nếu MaNhaCC là tự tăng (IDENTITY), hãy bỏ dòng MaNhaCC khỏi INSERT
+                            cmd.CommandText = @"INSERT INTO NhaCC (MaNhaCC, TenNhaCC, DiaChi, SDT, Email)
+                                                VALUES (@MaNhaCC, @TenNhaCC, @DiaChi, @SDT, @Email)";
 
+                            cmd.Parameters.AddWithValue("@MaNhaCC", txtMaNhaCC.Text);
                             cmd.Parameters.AddWithValue("@TenNhaCC", txtTenNhaCC.Text);
                             cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text);
                             cmd.Parameters.AddWithValue("@SDT", txtSDT.Text);
@@ -88,7 +87,6 @@ namespace QuanLiCuaHang_NongDuoc
                         }
                         clear();
                         this.Close();
-
                         this.ncc.LoadNhaCungCap();
                         this.ThongBao("Thêm nhà cung cấp thành công!", frmThongBao.enmType.Success);
                     }
@@ -105,12 +103,9 @@ namespace QuanLiCuaHang_NongDuoc
             try
             {
                 if (!KiemTraGiaTriNhap())
-                {
                     return;
-                }
 
-                DialogResult dg;
-                dg = MessageBox.Show("Bạn có chắc muốn sửa nhà cung cấp này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dg = MessageBox.Show("Bạn có chắc muốn sửa nhà cung cấp này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
                     using (SqlConnection cn = db.GetConnection())
@@ -118,8 +113,9 @@ namespace QuanLiCuaHang_NongDuoc
                         cn.Open();
                         using (SqlCommand cmd = cn.CreateCommand())
                         {
-                            cmd.CommandText = "UPDATE NhaCungCap SET TenNhaCC = @TenNhaCC, DiaChi = @DiaChi, SDT = @SDT, Email = @Email " +
-                                       "WHERE MaNhaCC = @MaNhaCC";
+                            cmd.CommandText = @"UPDATE NhaCC
+                                                SET TenNhaCC = @TenNhaCC, DiaChi = @DiaChi, SDT = @SDT, Email = @Email
+                                                WHERE MaNhaCC = @MaNhaCC";
 
                             cmd.Parameters.AddWithValue("@MaNhaCC", txtMaNhaCC.Text);
                             cmd.Parameters.AddWithValue("@TenNhaCC", txtTenNhaCC.Text);
@@ -131,7 +127,6 @@ namespace QuanLiCuaHang_NongDuoc
                         }
                         clear();
                         this.Close();
-
                         this.ncc.LoadNhaCungCap();
                         this.ThongBao("Sửa nhà cung cấp thành công!", frmThongBao.enmType.Success);
                     }

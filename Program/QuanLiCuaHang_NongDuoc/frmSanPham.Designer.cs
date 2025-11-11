@@ -72,6 +72,7 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "➕ Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
             // 
@@ -86,6 +87,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "✏️ Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -100,6 +102,7 @@
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "🗑️ Xoá";
             this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSort
             // 
@@ -115,6 +118,7 @@
             this.btnSort.TabIndex = 3;
             this.btnSort.Text = "⇅ Sắp xếp";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // txtSearch
             // 
@@ -125,6 +129,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(230, 37);
             this.txtSearch.TabIndex = 5;
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblSearch
             // 
@@ -150,6 +155,7 @@
             this.btnFirst.TabIndex = 6;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnPrev
             // 
@@ -164,6 +170,7 @@
             this.btnPrev.TabIndex = 7;
             this.btnPrev.Text = "◀";
             this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
@@ -178,6 +185,7 @@
             this.btnNext.TabIndex = 8;
             this.btnNext.Text = "▶";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnLast
             // 
@@ -192,6 +200,7 @@
             this.btnLast.TabIndex = 9;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // dgvDSSP
             // 

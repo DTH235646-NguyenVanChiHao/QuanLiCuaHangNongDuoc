@@ -62,7 +62,7 @@
             // txtEmail
             // 
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Location = new System.Drawing.Point(214, 63);
+            this.txtEmail.Location = new System.Drawing.Point(236, 63);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(281, 25);
@@ -75,7 +75,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(514, 48);
+            this.panel1.Size = new System.Drawing.Size(543, 48);
             this.panel1.TabIndex = 2;
             // 
             // label2
@@ -105,7 +105,7 @@
             // txtMK
             // 
             this.txtMK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMK.Location = new System.Drawing.Point(214, 113);
+            this.txtMK.Location = new System.Drawing.Point(236, 113);
             this.txtMK.Multiline = true;
             this.txtMK.Name = "txtMK";
             this.txtMK.Size = new System.Drawing.Size(281, 25);
@@ -126,7 +126,7 @@
             // txtNhapLaiMK
             // 
             this.txtNhapLaiMK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNhapLaiMK.Location = new System.Drawing.Point(214, 159);
+            this.txtNhapLaiMK.Location = new System.Drawing.Point(236, 161);
             this.txtNhapLaiMK.Multiline = true;
             this.txtNhapLaiMK.Name = "txtNhapLaiMK";
             this.txtNhapLaiMK.Size = new System.Drawing.Size(281, 25);
@@ -171,7 +171,7 @@
             // txtMaNhanVien
             // 
             this.txtMaNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaNhanVien.Location = new System.Drawing.Point(214, 304);
+            this.txtMaNhanVien.Location = new System.Drawing.Point(236, 306);
             this.txtMaNhanVien.Multiline = true;
             this.txtMaNhanVien.Name = "txtMaNhanVien";
             this.txtMaNhanVien.Size = new System.Drawing.Size(281, 25);
@@ -192,7 +192,7 @@
             // txtTenNV
             // 
             this.txtTenNV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenNV.Location = new System.Drawing.Point(214, 351);
+            this.txtTenNV.Location = new System.Drawing.Point(236, 351);
             this.txtTenNV.Multiline = true;
             this.txtTenNV.Name = "txtTenNV";
             this.txtTenNV.Size = new System.Drawing.Size(281, 25);
@@ -233,15 +233,16 @@
             // cbbVaiTro
             // 
             this.cbbVaiTro.FormattingEnabled = true;
-            this.cbbVaiTro.Location = new System.Drawing.Point(214, 205);
+            this.cbbVaiTro.Location = new System.Drawing.Point(236, 205);
             this.cbbVaiTro.Name = "cbbVaiTro";
             this.cbbVaiTro.Size = new System.Drawing.Size(281, 28);
             this.cbbVaiTro.TabIndex = 20;
+  
             // 
             // cbbTrangThai
             // 
             this.cbbTrangThai.FormattingEnabled = true;
-            this.cbbTrangThai.Location = new System.Drawing.Point(214, 255);
+            this.cbbTrangThai.Location = new System.Drawing.Point(236, 258);
             this.cbbTrangThai.Name = "cbbTrangThai";
             this.cbbTrangThai.Size = new System.Drawing.Size(281, 28);
             this.cbbTrangThai.TabIndex = 21;
@@ -251,7 +252,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(514, 485);
+            this.ClientSize = new System.Drawing.Size(543, 485);
             this.Controls.Add(this.cbbTrangThai);
             this.Controls.Add(this.cbbVaiTro);
             this.Controls.Add(this.btnSua);

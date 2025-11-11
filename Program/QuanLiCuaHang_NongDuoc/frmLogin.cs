@@ -15,39 +15,36 @@ namespace QuanLiCuaHang_NongDuoc
 {
     public partial class frmLogin : Form
     {
-
-        private bool Drag;
-        private int MouseX;
-        private int MouseY;
-
-
-
-
-
-
-
-
-
-        public struct MARGINS
-        {
-            public int leftWidth;
-            public int rightWidth;
-            public int topHeight;
-            public int bottomHeight;
-
-        }
-
-
         #region PublicDeclarations
         public string _pass = "";
         public bool _isactivate;
         #endregion
+
         DBConnection dbConnect = new DBConnection();
-        public frmLogin()
+        private frmMainApp app;
+
+        public frmLogin(frmMainApp main)
         {
             InitializeComponent();
-
+            this.app = main;
             txtEmail.Focus();
+
+            // Đặt PasswordChar cho textbox password
+            txtPassword.PasswordChar = '●';
+
+            // Đăng ký sự kiện KeyPress để hỗ trợ nhấn Enter
+            txtEmail.KeyPress += TextBox_KeyPress;
+            txtPassword.KeyPress += TextBox_KeyPress;
+        }
+
+        // Hỗ trợ nhấn Enter để đăng nhập
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnDangNhap_Click(sender, e);   
+                e.Handled = true;
+            }
         }
 
         public void ThongBao(string msg, frmThongBao.enmType type)
@@ -56,35 +53,26 @@ namespace QuanLiCuaHang_NongDuoc
             frm.showAlert(msg, type);
         }
 
-
-        public string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
-                string hashedPassword = Convert.ToBase64String(hashBytes);
-                return hashedPassword;
-            }
-        }
-
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            if (this.txtEmail.Text == "")
+            // Validate input
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Vui lòng nhập email!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập email!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmail.Focus();
                 return;
             }
 
-            if (this.txtPassword.Text == "")
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPassword.Focus();
                 return;
             }
 
-            string enteredEmail = txtEmail.Text;
+            string enteredEmail = txtEmail.Text.Trim();
             string enteredPassword = txtPassword.Text;
 
             try
@@ -92,62 +80,74 @@ namespace QuanLiCuaHang_NongDuoc
                 using (SqlConnection cn = dbConnect.GetConnection())
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand("SELECT u.email, u.password, u.roleid, u.name, u.accountstatus, "))
+                    string query = @"SELECT nv.MaNhanVien, nv.TenNhanVien, nv.Email, 
+                                    nv.MatKhau, vt.VaiTro, nv.TrangThaiTaiKhoan 
+                                    FROM NhanVien AS nv 
+                                    INNER JOIN VaiTro AS vt ON nv.MaVaiTro = vt.MaVaiTro 
+                                    WHERE nv.Email = @email";
+
+                    using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
                         cmd.Parameters.AddWithValue("@email", enteredEmail);
+
                         using (SqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
-                                string storedEmail = dr["email"].ToString();
-                                string storedPasswordHash = dr["password"].ToString();
-                                int roleId = Convert.ToInt32(dr["roleId"]);
-                                string name = dr["name"].ToString();
-                                string accountStatus = dr["accountStatus"].ToString();
+                                string storedEmail = dr["Email"].ToString();
+                                string storedPassword = dr["MatKhau"].ToString();
+                                string name = dr["TenNhanVien"].ToString();
+                                string accountStatus = dr["TrangThaiTaiKhoan"].ToString();
+                                string role = dr["VaiTro"].ToString();
 
-                                if (accountStatus == "Deactivated")
+                                // Kiểm tra trạng thái tài khoản
+                                if (accountStatus == "Tạm khoá")
                                 {
-                                    MessageBox.Show("Tài khoản của bạn đã ngưng hoạt động","THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                                    MessageBox.Show("Tài khoản của bạn đã bị tạm khoá. Vui lòng liên hệ quản trị viên.",
+                                        "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
-                                string enteredPasswordHash = HashPassword(enteredPassword);
-
-                                if (enteredPasswordHash != storedPasswordHash)
+                                if (accountStatus == "Không hoạt động")
                                 {
-                                    MessageBox.Show("Email hoặc mật khẩu của bạn không đúng!", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show("Tài khoản của bạn đã ngưng hoạt động. Vui lòng liên hệ quản trị viên.",
+                                        "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
-                                MessageBox.Show("Welcome " + name,"THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                // Kiểm tra mật khẩu
+                                // Nếu bạn đang dùng hash password, thay thế bằng hàm verify hash
+                                if (enteredPassword != storedPassword)
+                                {
+                                    MessageBox.Show("Email hoặc mật khẩu không đúng!",
+                                        "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    txtPassword.Clear();
+                                    txtPassword.Focus();
+                                    return;
+                                }
+
+                                // Đăng nhập thành công
+                                MessageBox.Show($"Chào mừng {name}!\nVai trò: {role}",
+                                    "ĐĂNG NHẬP THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Cập nhật thông tin lên form chính
+                                this.app.lblEmail.Text = storedEmail;
+                                this.app.lblUsername.Text = name;
+
+                                // Đặt DialogResult để form chính biết đăng nhập thành công
+                                this.DialogResult = DialogResult.OK;
+
+                                // Xóa dữ liệu và đóng form
                                 txtEmail.Clear();
                                 txtPassword.Clear();
                                 this.Close();
-
-                                this.Hide();
-
-                                if (roleId == 1)
-                                {
-                                    /*frmMainApp main = new frmMainApp();
-                                    main.lblUsername.Text = storedEmail;
-                                    main.lblRole.Text = "Admin";
-                                    main.lblFullName.Text = name;
-                                    main._pass = storedPasswordHash;
-                                    main.ShowDialog();*/
-                                }
-                                else
-                                {
-                                    /*frmMainApp main = new frmMainApp();
-                                    main.lblUsername.Text = storedEmail;
-                                    main.lblRole.Text = "Guest";
-                                    main.lblFullName.Text = name;
-                                    main._pass = storedPasswordHash;
-                                    main.ShowDialog();*/
-                                }
                             }
                             else
                             {
-                                MessageBox.Show("Email hoặc mật khẩu không đúng !","THÔNG BÁO",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                                MessageBox.Show("Email hoặc mật khẩu không đúng!",
+                                    "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                txtPassword.Clear();
+                                txtPassword.Focus();
                             }
                         }
                     }
@@ -155,58 +155,34 @@ namespace QuanLiCuaHang_NongDuoc
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message,
+                    "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            DialogResult traloi;
-            traloi = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (traloi == DialogResult.OK)
-                Application.Exit();
-        }
+            DialogResult traloi = MessageBox.Show(
+                "Bạn có chắc chắn muốn thoát?",
+                "Xác nhận thoát",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-        private void panel2_MouseDown(object sender, MouseEventArgs e)
-        {
-            Drag = true;
-            MouseX = Cursor.Position.X - this.Left;
-            MouseY = Cursor.Position.Y - this.Top;
-        }
-
-        private void panel2_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (Drag)
+            if (traloi == DialogResult.Yes)
             {
-                this.Top = Cursor.Position.Y - MouseY;
-                this.Left = Cursor.Position.X - MouseX;
+                this.DialogResult = DialogResult.Cancel;
+                Application.Exit();
             }
         }
 
-        private void panel2_MouseUp(object sender, MouseEventArgs e)
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Drag = false;
-        }
-
-        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
-        {
-            Drag = true;
-            MouseX = Cursor.Position.X - this.Left;
-            MouseY = Cursor.Position.Y - this.Top;
-        }
-
-        private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
-        {
-            Drag = true;
-            MouseX = Cursor.Position.X - this.Left;
-            MouseY = Cursor.Position.Y - this.Top;
-        }
-
-        private void pictureBox3_MouseUp(object sender, MouseEventArgs e)
-        {
-            Drag = false;
+            // Nếu form đóng mà chưa đăng nhập thành công
+            if (this.DialogResult != DialogResult.OK)
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
     }
 }
-

@@ -367,11 +367,11 @@ namespace QuanLiCuaHang_NongDuoc
         private Label label3;
         private Label label2;
         private Label lblNamePage;
-        private Label lblEmail;
-        private Label lblUsername;
         private Panel pnlActive;
         private Panel pnlContentPages;
         private Timer timer1;
         private Button btnLichSu;
+        public Label lblEmail;
+        public Label lblUsername;
     }
 }

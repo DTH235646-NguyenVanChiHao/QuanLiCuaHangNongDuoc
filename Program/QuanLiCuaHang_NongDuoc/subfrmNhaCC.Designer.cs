@@ -43,7 +43,7 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-
+            this.SuspendLayout();
             // 
             // label1
             // 
@@ -51,14 +51,14 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(80, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(360, 48);
+            this.label1.Size = new System.Drawing.Size(375, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chi tiết nhà cung cấp";
             // 
             // txtMaNhaCC
             // 
             this.txtMaNhaCC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaNhaCC.Location = new System.Drawing.Point(214, 63);
+            this.txtMaNhaCC.Location = new System.Drawing.Point(230, 63);
             this.txtMaNhaCC.Multiline = true;
             this.txtMaNhaCC.Name = "txtMaNhaCC";
             this.txtMaNhaCC.Size = new System.Drawing.Size(281, 25);
@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(514, 48);
+            this.panel1.Size = new System.Drawing.Size(557, 48);
             this.panel1.TabIndex = 2;
             // 
             // label2
@@ -82,7 +82,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(185, 25);
+            this.label2.Size = new System.Drawing.Size(191, 25);
             this.label2.TabIndex = 5;
             this.label2.Text = "Mã Nhà Cung Cấp";
             // 
@@ -92,16 +92,16 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 111);
+            this.label3.Location = new System.Drawing.Point(4, 109);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 25);
+            this.label3.Size = new System.Drawing.Size(199, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "Tên Nhà Cung Cấp";
             // 
             // txtTenNhaCC
             // 
             this.txtTenNhaCC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenNhaCC.Location = new System.Drawing.Point(214, 111);
+            this.txtTenNhaCC.Location = new System.Drawing.Point(230, 111);
             this.txtTenNhaCC.Multiline = true;
             this.txtTenNhaCC.Name = "txtTenNhaCC";
             this.txtTenNhaCC.Size = new System.Drawing.Size(281, 25);
@@ -115,14 +115,14 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(12, 159);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 25);
+            this.label4.Size = new System.Drawing.Size(78, 25);
             this.label4.TabIndex = 9;
             this.label4.Text = "Địa chỉ";
             // 
             // txtDiaChi
             // 
             this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiaChi.Location = new System.Drawing.Point(214, 159);
+            this.txtDiaChi.Location = new System.Drawing.Point(230, 159);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(281, 25);
@@ -136,14 +136,14 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(12, 207);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 25);
+            this.label5.Size = new System.Drawing.Size(139, 25);
             this.label5.TabIndex = 11;
             this.label5.Text = "Số điện thoại";
             // 
             // txtSDT
             // 
             this.txtSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSDT.Location = new System.Drawing.Point(214, 207);
+            this.txtSDT.Location = new System.Drawing.Point(230, 207);
             this.txtSDT.Multiline = true;
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(281, 25);
@@ -164,7 +164,7 @@
             // txtEmail
             // 
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Location = new System.Drawing.Point(214, 255);
+            this.txtEmail.Location = new System.Drawing.Point(230, 255);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(281, 25);
@@ -178,13 +178,13 @@
             this.btnThem.FlatAppearance.BorderSize = 2;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.Location = new System.Drawing.Point(166, 305);
+            this.btnThem.Location = new System.Drawing.Point(88, 305);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(153, 60);
             this.btnThem.TabIndex = 18;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
-
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
             // 
@@ -200,14 +200,14 @@
             this.btnSua.TabIndex = 19;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
-
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // subfrmNhaCungCap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(514, 380);
+            this.ClientSize = new System.Drawing.Size(557, 380);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.label6);

@@ -260,7 +260,47 @@ namespace QuanLiCuaHang_NongDuoc
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chua the dang xuat");
+            DialogResult result = MessageBox.Show(
+        "Bạn có chắc chắn muốn đăng xuất?",
+        "Xác nhận đăng xuất",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question
+    );
+
+            if (result == DialogResult.Yes)
+            {
+                // Xóa thông tin người dùng hiện tại
+                this.lblUsername.Text = "Username";
+                this.lblEmail.Text = "Email";
+
+                // Đóng tất cả form con
+                if (activeForm != null)
+                {
+                    activeForm.Close();
+                    activeForm = null;
+                }
+
+                // Ẩn form chính
+                this.Hide();
+
+                // Hiển thị form đăng nhập
+                frmLogin loginForm = new frmLogin(this);
+                loginForm.ShowDialog();
+
+                // Nếu đăng nhập không thành công, đóng ứng dụng
+                if (loginForm.DialogResult != DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    // Đăng nhập thành công, hiển thị lại form chính
+                    this.Show();
+                    // Reset về trang chủ
+                    OpenChildForm(new frmTrangChu());
+                    btnTrangChu_Click(null, null);
+                }
+            }
 
 
         }

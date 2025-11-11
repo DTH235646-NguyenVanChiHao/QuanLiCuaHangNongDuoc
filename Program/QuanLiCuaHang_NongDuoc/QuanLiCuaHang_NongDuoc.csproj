@@ -134,6 +134,12 @@
     <Compile Include="subfrmLichSuHoaDon.Designer.cs">
       <DependentUpon>subfrmLichSuHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="subfrmLichSuPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="subfrmLichSuPhieuNhap.Designer.cs">
+      <DependentUpon>subfrmLichSuPhieuNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="subfrmNhaCC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="subfrmLichSuHoaDon.resx">
       <DependentUpon>subfrmLichSuHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="subfrmLichSuPhieuNhap.resx">
+      <DependentUpon>subfrmLichSuPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="subfrmNhaCC.resx">
+      <DependentUpon>subfrmNhaCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="subfrmNhanVien.resx">
       <DependentUpon>subfrmNhanVien.cs</DependentUpon>

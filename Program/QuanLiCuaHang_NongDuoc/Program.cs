@@ -16,7 +16,28 @@ namespace QuanLiCuaHang_NongDuoc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMainApp());
+            Application.EnableVisualStyles();
+
+
+            // Tạo form chính
+            frmMainApp mainApp = new frmMainApp();
+
+            // Hiển thị form đăng nhập trước
+            frmLogin loginForm = new frmLogin(mainApp);
+            DialogResult loginResult = loginForm.ShowDialog();
+
+            // Nếu đăng nhập thành công, chạy form chính
+            if (loginResult == DialogResult.OK)
+            {
+                Application.Run(mainApp);
+            }
+            else
+            {
+                // Đăng nhập thất bại hoặc người dùng thoát
+                Application.Exit();
+            }
+
+            
         }
     }
 }

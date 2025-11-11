@@ -19,6 +19,9 @@ namespace QuanLiCuaHang_NongDuoc
             this.TopMost = true;
         }
 
+
+        //enum (viết tắt của enumeration) là một
+        //kiểu dữ liệu đặc biệt dùng để đặt tên cho một nhóm các hằng số (constants) có liên quan đến nhau.
         public enum enmAction { 
             wait,
             start,
@@ -41,7 +44,7 @@ namespace QuanLiCuaHang_NongDuoc
             switch (this.action)
             {
                 case enmAction.wait:
-                    timer1.Interval = 5000;
+                    timer1.Interval = 1000;
                     action = enmAction.close;
                     break;
                 case frmThongBao.enmAction.start:
@@ -65,6 +68,8 @@ namespace QuanLiCuaHang_NongDuoc
                     this.Opacity -= 0.1;
 
                     this.Left -= 3;
+
+                    //Base là gọi hàm cha : là form vì form thông  báo kế thừ của form
                     if (base.Opacity == 0.0) { 
                         this.Hide();
                         timer1.Stop();
@@ -76,12 +81,22 @@ namespace QuanLiCuaHang_NongDuoc
         public void showAlert(string message, enmType type) {
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;
-            string fname;
 
-            for (int i = 1; i < 10; i++) {
-                i++;   
-            }
+            // 🔹 Xác định vị trí hiển thị ở góc phải phía dưới
+            int margin = 10;
+            int alertHeight = this.Height + margin;
+            int alertIndex = 1; // nếu có nhiều alert, có thể truyền vào số thứ tự
 
+            // Vị trí X (bên phải màn hình)
+            int x = Screen.PrimaryScreen.WorkingArea.Width - this.Width - margin;
+
+            // Vị trí Y (cách đáy màn hình một chút)
+            int y = Screen.PrimaryScreen.WorkingArea.Height - (alertHeight * alertIndex);
+
+            this.Location = new Point(x, y);
+
+
+            // Lưu lại vị trí X gốc để sử dụng sau : dùng để so sánh với vị trí ban đầu
             this.x = Screen.PrimaryScreen.WorkingArea.Width - base.Width - 5;
             switch (type) { 
                 case enmType.Success:
@@ -102,6 +117,8 @@ namespace QuanLiCuaHang_NongDuoc
             }
             this.lblMessage.Text = message;
             this.Show();
+
+            //Hiển thị và tự tắt
             this.action = enmAction.start;
             this.timer1.Interval = 1;
             this.timer1.Start();

@@ -16,15 +16,10 @@ namespace QuanLiCuaHang_NongDuoc
         //Connect db
         DBConnection db = new DBConnection();
 
-        //Phân Trang
-        private int TrangHienTai = 1;
-        private int TongTrang = 1;
-        private int SoNCCDuocHienThi = 10; //Mặc định số lượng hiển thị trên một trang
-        private int TongNCC = 1;
-
         public frmNhaCungCap()
         {
             InitializeComponent();
+            this.LoadNhaCungCap();
         }
 
         public void ThongBao(string msg, frmThongBao.enmType type)
@@ -33,79 +28,36 @@ namespace QuanLiCuaHang_NongDuoc
             f.showAlert(msg, type);
         }
 
-        //Hien thi trang
-        private void HienThiSoTrang()
-        {
-            int TongTrang = (int)Math.Ceiling((double)this.TongNCC / this.SoNCCDuocHienThi);
-
-            lblTongTrang.Text = TongTrang == 0 ? "1" : TongTrang.ToString();
-            lblTrangHienTai.Text = this.TrangHienTai.ToString();
-        }
-
-        private void CapNhatNutChuyenTrang()
-        {
-            //Nút trang đầu và trang trước
-            if (this.TrangHienTai == 1)
-            {
-                btnFirst.Enabled = false;
-                btnPrev.Enabled = false;
-            }
-            else
-            {
-                btnFirst.Enabled = true;
-                btnPrev.Enabled = true;
-            }
-            //Nút trang cuối và trang sau
-            if (this.TrangHienTai == this.TongTrang)
-            {
-                btnLast.Enabled = false;
-                btnNext.Enabled = false;
-            }
-            else
-            {
-                btnLast.Enabled = true;
-                btnNext.Enabled = true;
-            }
-        }
-
-        //Tai nha cung cap
+        //Tải nhà cung cấp
         public void LoadNhaCungCap()
         {
-            //Lấy dữ liệu từ database và hiển thị lên datagridview
             using (SqlConnection cn = db.GetConnection())
             {
                 cn.Open();
-                //Đếm số lượng nhà cung cấp
-                string where = "ncc.MaNhaCC LIKE '%' + @search + '%' OR ncc.TenNhaCC LIKE '%' + @search + '%' OR ncc.DiaChi LIKE '%' + @search + '%' OR ncc.SDT LIKE '%' + @search + '%' OR ncc.Email LIKE '%' + @search + '%'";
-                string query = $"SELECT COUNT(*) FROM NhaCungCap AS ncc WHERE {where}";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@search", $"{txtSearch.Text}");
-                    this.TongNCC = (int)cmd.ExecuteScalar();
+                int index = 1;
 
-                    int TongTrang = (int)Math.Ceiling((double)this.TongNCC / this.SoNCCDuocHienThi);
-                    this.TongTrang = TongTrang == 0 ? 1 : TongTrang;
-                }
+                //Xóa dữ liệu cũ để tránh trùng lặp
+                dgvDSNCC.Rows.Clear();
 
-                //Thêm nhà cung cấp vào bảng 
-                string query2 = $"SELECT ncc.MaNhaCC, ncc.TenNhaCC, ncc.DiaChi, ncc.SDT, ncc.Email FROM NhaCungCap AS ncc WHERE (ncc.MaNhaCC LIKE '%' + @search + '%' OR ncc.TenNhaCC LIKE '%' + @search + '%' OR ncc.DiaChi LIKE '%' + @search + '%' OR ncc.SDT LIKE '%' + @search + '%' OR ncc.Email LIKE '%' + @search + '%') ORDER BY ncc.MaNhaCC DESC OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
+                string query2 = @"SELECT ncc.MaNhaCC, ncc.TenNhaCC, ncc.DiaChi, ncc.SDT, ncc.Email 
+                                  FROM NhaCC AS ncc 
+                                  WHERE (ncc.MaNhaCC LIKE '%' + @search + '%' 
+                                         OR ncc.TenNhaCC LIKE '%' + @search + '%' 
+                                         OR ncc.DiaChi LIKE '%' + @search + '%' 
+                                         OR ncc.SDT LIKE '%' + @search + '%' 
+                                         OR ncc.Email LIKE '%' + @search + '%') 
+                                  ORDER BY ncc.MaNhaCC DESC;";
+
                 using (SqlCommand cmd = new SqlCommand(query2, cn))
                 {
-                    int rowIndex = (this.TrangHienTai - 1) * this.SoNCCDuocHienThi;
-                    dgvDSNCC.Rows.Clear();
-
-                    cmd.Parameters.AddWithValue("@search", txtSearch.Text);
-                    cmd.Parameters.AddWithValue("@offset", (this.TrangHienTai - 1) * this.SoNCCDuocHienThi);
-                    cmd.Parameters.AddWithValue("@fetch", this.SoNCCDuocHienThi);
-
-                    string index;
+                    cmd.Parameters.AddWithValue("@search", txtSearch.Text.Trim());
+                        
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            index = "NCC" + (rowIndex++).ToString();
                             dgvDSNCC.Rows.Add(
-                                index,
+                                index++,
                                 dr["MaNhaCC"].ToString(),
                                 dr["TenNhaCC"].ToString(),
                                 dr["DiaChi"].ToString(),
@@ -115,8 +67,6 @@ namespace QuanLiCuaHang_NongDuoc
                         }
                     }
                 }
-                HienThiSoTrang();
-                CapNhatNutChuyenTrang();
             }
         }
 
@@ -141,7 +91,7 @@ namespace QuanLiCuaHang_NongDuoc
         {
             try
             {
-                //lấy dữ liệu và thêm vào sub form
+                //Lấy dữ liệu và thêm vào sub form
                 subfrmNhaCungCap ncc = new subfrmNhaCungCap(this);
                 ncc.btnSua.Enabled = true;
 
@@ -154,7 +104,7 @@ namespace QuanLiCuaHang_NongDuoc
                 ncc.btnSua.Enabled = true;
                 ncc.btnThem.Enabled = false;
 
-                //Các thuộc tính không được sửa
+                //Không cho phép sửa mã
                 ncc.txtMaNhaCC.Enabled = false;
 
                 ncc.Show();
@@ -194,7 +144,7 @@ namespace QuanLiCuaHang_NongDuoc
                         }
 
                         //Xóa trong NhaCungCap
-                        using (SqlCommand cmd = new SqlCommand("DELETE FROM NhaCungCap WHERE MaNhaCC = @MaNhaCC", cn))
+                        using (SqlCommand cmd = new SqlCommand("DELETE FROM NhaCC WHERE MaNhaCC = @MaNhaCC", cn))
                         {
                             cmd.Parameters.AddWithValue("@MaNhaCC", dgvDSNCC.CurrentRow.Cells["MaNhaCC"].Value.ToString());
                             int result = cmd.ExecuteNonQuery();
@@ -217,42 +167,6 @@ namespace QuanLiCuaHang_NongDuoc
             }
         }
 
-        private void btnFirst_Click(object sender, EventArgs e)
-        {
-            if (this.TrangHienTai > 1)
-            {
-                this.TrangHienTai = 1;
-                LoadNhaCungCap();
-            }
-        }
-
-        private void btnPrev_Click(object sender, EventArgs e)
-        {
-            if (this.TrangHienTai > 1)
-            {
-                this.TrangHienTai--;
-                LoadNhaCungCap();
-            }
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            if (this.TrangHienTai < this.TongTrang)
-            {
-                this.TrangHienTai++;
-                LoadNhaCungCap();
-            }
-        }
-
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            if (this.TrangHienTai < this.TongTrang)
-            {
-                this.TrangHienTai = this.TongTrang;
-                LoadNhaCungCap();
-            }
-        }
-
         public bool toggle = false;
         private void btnSort_Click(object sender, EventArgs e)
         {
@@ -263,37 +177,28 @@ namespace QuanLiCuaHang_NongDuoc
             using (SqlConnection cn = db.GetConnection())
             {
                 cn.Open();
-                //Đếm số lượng nhà cung cấp
-                string where = "ncc.MaNhaCC LIKE '%' + @search + '%' OR ncc.TenNhaCC LIKE '%' + @search + '%' OR ncc.DiaChi LIKE '%' + @search + '%' OR ncc.SDT LIKE '%' + @search + '%' OR ncc.Email LIKE '%' + @search + '%'";
-                string query = $"SELECT COUNT(*) FROM NhaCungCap AS ncc WHERE {where}";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@search", $"{txtSearch.Text}");
-                    this.TongNCC = (int)cmd.ExecuteScalar();
+                dgvDSNCC.Rows.Clear();
+                int index = 1;
 
-                    int TongTrang = (int)Math.Ceiling((double)this.TongNCC / this.SoNCCDuocHienThi);
-                    this.TongTrang = TongTrang == 0 ? 1 : TongTrang;
-                }
+                string query2 = $@"SELECT ncc.MaNhaCC, ncc.TenNhaCC, ncc.DiaChi, ncc.SDT, ncc.Email 
+                                   FROM NhaCC AS ncc 
+                                   WHERE (ncc.MaNhaCC LIKE '%' + @search + '%' 
+                                          OR ncc.TenNhaCC LIKE '%' + @search + '%' 
+                                          OR ncc.DiaChi LIKE '%' + @search + '%' 
+                                          OR ncc.SDT LIKE '%' + @search + '%' 
+                                          OR ncc.Email LIKE '%' + @search + '%') 
+                                   ORDER BY ncc.MaNhaCC " + asc + ";";
 
-                //Thêm nhà cung cấp vào bảng
-                string query2 = $"SELECT ncc.MaNhaCC, ncc.TenNhaCC, ncc.DiaChi, ncc.SDT, ncc.Email FROM NhaCungCap AS ncc WHERE (ncc.MaNhaCC LIKE '%' + @search + '%' OR ncc.TenNhaCC LIKE '%' + @search + '%' OR ncc.DiaChi LIKE '%' + @search + '%' OR ncc.SDT LIKE '%' + @search + '%' OR ncc.Email LIKE '%' + @search + '%') ORDER BY ncc.MaNhaCC {asc} OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
                 using (SqlCommand cmd = new SqlCommand(query2, cn))
                 {
-                    int rowIndex = (this.TrangHienTai - 1) * this.SoNCCDuocHienThi;
-                    dgvDSNCC.Rows.Clear();
+                    cmd.Parameters.AddWithValue("@search", txtSearch.Text.Trim());
 
-                    cmd.Parameters.AddWithValue("@search", txtSearch.Text);
-                    cmd.Parameters.AddWithValue("@offset", (this.TrangHienTai - 1) * this.SoNCCDuocHienThi);
-                    cmd.Parameters.AddWithValue("@fetch", this.SoNCCDuocHienThi);
-
-                    string index;
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            index = "NCC" + (rowIndex++).ToString();
                             dgvDSNCC.Rows.Add(
-                                index,
+                                index++,
                                 dr["MaNhaCC"].ToString(),
                                 dr["TenNhaCC"].ToString(),
                                 dr["DiaChi"].ToString(),
@@ -303,8 +208,6 @@ namespace QuanLiCuaHang_NongDuoc
                         }
                     }
                 }
-                HienThiSoTrang();
-                CapNhatNutChuyenTrang();
             }
         }
     }

@@ -15,18 +15,12 @@ namespace QuanLiCuaHang_NongDuoc
        
         public DBConnection() {
             //Kết nối csdl của từng thành viên
-            string datasource_ChiHao = "ADMIN-PC\\SQLEXPRESS";
-
-            string datasource_HieuHau = "DESKTOP-33RD74C\\SQLEXPRESS";
-            string datasource_PhuocHao;
-            string datasource_ThuVien = "(localdb)\\MSSQLLocalDB";
-
-
-
-
+            string datasource = "ADMIN-PC\\SQLEXPRESS";
             string tenDatabase_ChiHao = "QuanLiCuaHangNongDuoc";
+
+
             //Khởi tạo chuỗi dùng để kết nối CSDL
-            this.connectionString = $"Data Source={datasource_ChiHao};Initial Catalog={tenDatabase_ChiHao};Integrated Security=True";
+            this.connectionString = $"Data Source={datasource};Initial Catalog={tenDatabase_ChiHao};Integrated Security=True";
 
 
         }
@@ -39,13 +33,7 @@ namespace QuanLiCuaHang_NongDuoc
         }
 
 
-            //Lí do nên dùng using
-            //using giúp tự động giải phóng tài nguyên khi bạn dùng xong một đối tượng,
-            //                         mà không cần viết thêm code để đóng nó thủ công.
-            //============================Các hàm truy xuất dữ liệu
-
-
-            // Hàm lấy hình ảnh nhân viên => hiển thị lên sau khi đăng nhập
+            
        
     }
 }
