@@ -241,7 +241,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.cbbTenSP.Name = "cbbTenSP";
             this.cbbTenSP.Size = new System.Drawing.Size(290, 28);
             this.cbbTenSP.TabIndex = 26;
-            this.cbbTenSP.SelectedIndexChanged += new System.EventHandler(this.cbbTenSP_SelectedIndexChanged);
+            this.cbbTenSP.SelectionChangeCommitted += new System.EventHandler(this.cbbTenSP_SelectedIndexChanged);
             // 
             // txtMaKH
             // 

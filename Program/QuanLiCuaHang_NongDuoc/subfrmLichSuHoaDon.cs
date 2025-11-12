@@ -347,8 +347,15 @@ namespace QuanLiCuaHang_NongDuoc
 
         private void cbbTenSP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbbTenSP.SelectedIndex == -1)
+            if (cbbTenSP.SelectedIndex == -1)
             {
+                return;
+            }
+
+            // Kiểm tra nếu SelectedValue là null hoặc không hợp lệ
+            if (cbbTenSP.SelectedValue == null)
+            {
+                txtGiaTien.Text = "0";
                 return;
             }
             try

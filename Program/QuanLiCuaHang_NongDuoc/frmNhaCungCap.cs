@@ -72,12 +72,7 @@ namespace QuanLiCuaHang_NongDuoc
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadNhaCungCap();
-
-            if (dgvDSNCC.RowCount <= 0)
-            {
-                MessageBox.Show("Không tìm thấy nhà cung cấp phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -208,6 +203,16 @@ namespace QuanLiCuaHang_NongDuoc
                         }
                     }
                 }
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            LoadNhaCungCap();
+
+            if (dgvDSNCC.RowCount <= 0)
+            {
+                MessageBox.Show("Không tìm thấy nhà cung cấp phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

@@ -384,5 +384,7 @@ namespace QuanLiCuaHang_NongDuoc
                 txtGiaBan.Text = value.ToString();
             }
         }
+
+       
     }
 }

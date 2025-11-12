@@ -11,7 +11,6 @@ namespace QuanLiCuaHang_NongDuoc
         private Panel panel1;
         private Panel panel2;
         private Button btnTrangChu;
-        private Button btnHoaDon;
         private Button btnSanPham;
         private Button btnNhaCC;
         private Button btnKhachHang;
@@ -41,7 +40,6 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnKhachHang = new System.Windows.Forms.Button();
             this.btnNhaCC = new System.Windows.Forms.Button();
             this.btnSanPham = new System.Windows.Forms.Button();
-            this.btnHoaDon = new System.Windows.Forms.Button();
             this.btnTrangChu = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTimeRendering = new System.Windows.Forms.Label();
@@ -127,7 +125,6 @@ namespace QuanLiCuaHang_NongDuoc
             this.panel2.Controls.Add(this.btnKhachHang);
             this.panel2.Controls.Add(this.btnNhaCC);
             this.panel2.Controls.Add(this.btnSanPham);
-            this.panel2.Controls.Add(this.btnHoaDon);
             this.panel2.Controls.Add(this.btnTrangChu);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 65);
@@ -142,7 +139,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnLichSu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLichSu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLichSu.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnLichSu.Location = new System.Drawing.Point(-13, 388);
+            this.btnLichSu.Location = new System.Drawing.Point(12, 405);
             this.btnLichSu.Name = "btnLichSu";
             this.btnLichSu.Size = new System.Drawing.Size(164, 45);
             this.btnLichSu.TabIndex = 8;
@@ -181,7 +178,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKhachHang.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKhachHang.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnKhachHang.Location = new System.Drawing.Point(3, 316);
+            this.btnKhachHang.Location = new System.Drawing.Point(21, 310);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.Size = new System.Drawing.Size(164, 45);
             this.btnKhachHang.TabIndex = 1;
@@ -196,7 +193,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnNhaCC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNhaCC.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNhaCC.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnNhaCC.Location = new System.Drawing.Point(0, 251);
+            this.btnNhaCC.Location = new System.Drawing.Point(21, 224);
             this.btnNhaCC.Name = "btnNhaCC";
             this.btnNhaCC.Size = new System.Drawing.Size(126, 45);
             this.btnNhaCC.TabIndex = 2;
@@ -211,28 +208,13 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnSanPham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSanPham.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSanPham.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnSanPham.Location = new System.Drawing.Point(3, 200);
+            this.btnSanPham.Location = new System.Drawing.Point(12, 148);
             this.btnSanPham.Name = "btnSanPham";
             this.btnSanPham.Size = new System.Drawing.Size(152, 45);
             this.btnSanPham.TabIndex = 3;
             this.btnSanPham.Text = "Sản phẩm";
             this.btnSanPham.UseVisualStyleBackColor = false;
             this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
-            // 
-            // btnHoaDon
-            // 
-            this.btnHoaDon.BackColor = System.Drawing.SystemColors.Window;
-            this.btnHoaDon.FlatAppearance.BorderSize = 0;
-            this.btnHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHoaDon.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHoaDon.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnHoaDon.Location = new System.Drawing.Point(0, 140);
-            this.btnHoaDon.Name = "btnHoaDon";
-            this.btnHoaDon.Size = new System.Drawing.Size(136, 45);
-            this.btnHoaDon.TabIndex = 5;
-            this.btnHoaDon.Text = "Hóa đơn";
-            this.btnHoaDon.UseVisualStyleBackColor = false;
-            this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
             // 
             // btnTrangChu
             // 
@@ -241,7 +223,7 @@ namespace QuanLiCuaHang_NongDuoc
             this.btnTrangChu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrangChu.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnTrangChu.Location = new System.Drawing.Point(-2, 72);
+            this.btnTrangChu.Location = new System.Drawing.Point(11, 72);
             this.btnTrangChu.Name = "btnTrangChu";
             this.btnTrangChu.Size = new System.Drawing.Size(153, 45);
             this.btnTrangChu.TabIndex = 6;

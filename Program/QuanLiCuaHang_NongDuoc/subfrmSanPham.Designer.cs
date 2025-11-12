@@ -158,6 +158,7 @@
             this.txtGiaMua.Name = "txtGiaMua";
             this.txtGiaMua.Size = new System.Drawing.Size(200, 34);
             this.txtGiaMua.TabIndex = 8;
+            this.txtGiaMua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaMua_KeyPress);
             this.txtGiaMua.Leave += new System.EventHandler(this.txtGiaMua_Leave);
             // 
             // label6
@@ -180,6 +181,8 @@
             this.txtGiaBan.Name = "txtGiaBan";
             this.txtGiaBan.Size = new System.Drawing.Size(200, 34);
             this.txtGiaBan.TabIndex = 10;
+ 
+            this.txtGiaBan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaBan_KeyPress);
             this.txtGiaBan.Leave += new System.EventHandler(this.txtGiaBan_Leave);
             // 
             // label7
@@ -202,6 +205,7 @@
             this.txtSoLuong.Name = "txtSoLuong";
             this.txtSoLuong.Size = new System.Drawing.Size(200, 34);
             this.txtSoLuong.TabIndex = 12;
+            this.txtSoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoLuong_KeyPress);
             // 
             // label9
             // 
